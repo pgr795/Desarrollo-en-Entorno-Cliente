@@ -566,11 +566,11 @@ window.onload = bienvenido;
 	
 	function enviar(){
 	return esNif(document.primero.nif.value)
-	&& nombreValido(document.primero.nombre.value)
-	&& apellidoValido(document.primero.apellidos.value)
-	&& domicilioValido(document.primero.domicilio.value)
-	&& localidadValido(document.primero.localidad.value)
-	&& codigoPostalValido(document.primero.cp.value);
+	&& validarNombre(document.primero.nombre.value)
+	&& validarApellido(document.primero.apellidos.value)
+	&& validarDomicilio(document.primero.domicilio.value)
+	&& validarLocalidad(document.primero.localidad.value)
+	&& validarCodigoPostal(document.primero.cp.value);
 }
 	
 //--------------------------------------------------------------------------------------------	
