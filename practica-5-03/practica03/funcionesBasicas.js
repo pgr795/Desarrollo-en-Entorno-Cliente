@@ -1,4 +1,3 @@
-
 function esLetraPlus(letra){
 		var letra = letra.toUpperCase();
 		var numeros =("0123456789");
@@ -38,7 +37,21 @@ function esNumero(numero){
 		console.log(numero);
 		return (numero < "0" || numero > "9");
 	}
+
+/* function esNIF(nif){
+	var valido=true;
+
 	
+}
+
+function esCIF(cif){
+	
+	
+}
+ */
+
+
+//--------------------------------------------------------------------------------------------	
 
 function validarCodigoPostal(){
 		var validarCodigoPostal = true;
