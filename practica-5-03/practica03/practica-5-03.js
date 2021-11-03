@@ -20,15 +20,15 @@ function validar(){
 	alert(datoNifCif)
 	var cifEs=esCif(datoCif);
 	if(cifEs==1){
-		alert("Se ha introducido un cif correcto.");
+		console.log("Se ha introducido un cif correcto.");
 	
 	}
 	else if(cifEs==2){
-		alert("Se ha introducido un cif erróneo. El carácter de control es erróneo.");
+		console.log("Se ha introducido un cif erróneo. El carácter de control es erróneo.");
 	
 	}
 	else if(cifEs==0){
-		alert("Se ha Introducido un dato no valido.No es CIF");
+		console.log("Se ha Introducido un dato no valido.No es CIF");
 	}
 	
 //---------------------------------------------------------------------------------------------------------------------------------
@@ -37,33 +37,32 @@ function validar(){
 	//CIF P8553129B
 	var nifCIF=nif_cif(datoNifCif);
 	if(nifCIF=="C1"){
-		alert("Se ha introducido un cif correcto.");
+		console.log("Se ha introducido un cif correcto.");
 	}
 	//switch
 	else if(nifCIF=="C2"){
-		alert("Se ha introducido un cif erróneo. El carácter de control es erróneo.");
+		console.log("Se ha introducido un cif erróneo. El carácter de control es erróneo.");
 	}
 	else if(nifCIF=="N1"){
-		alert("Se ha introducido un NIF correcto");
+		console.log("Se ha introducido un NIF correcto");
 	}
 	else if(nifCIF=="N2"){
-		alert("Se ha introducido un NIF erróneo. El carácter de control es erróneo.");
+		console.log("Se ha introducido un NIF erróneo. El carácter de control es erróneo.");
 	}
 	else if(nifCIF=="N3"){
-		alert("Se ha introducido un DNI, se ha pasado un número de entre 6 y 8 dígitos con un valor mínimo de 100000");
+		console.log("Se ha introducido un DNI, se ha pasado un número de entre 6 y 8 dígitos con un valor mínimo de 100000");
 	}
 	else if(nifCIF==0){
-		alert("Se ha introducido un dato no válido. No es CIF.");
+		console.log("Se ha introducido un dato no válido. No es CIF.");
 	}	
 
 //-------------------------------------------------------------------------------------------------------------------------------------
 	
-	 var calculo=calculoIBANEspanya("12345678910111213145");
-	
-	// var comprobar=comprobarIBAN(calculo);
-	 console.log(comprobarIBAN(calculo));
-	 alert(comprobarIBAN(calculo));
-	// console.log(comprobar);
-	 
-	
+	//var calculo=calculoIBANEspanya("21000418401234567891");
+	//console.log(comprobarIBAN(calculo));
+	//alert(calculo);
+	var comprobar=comprobarIBAN("ES6621000418401234567891");
+	//console.log(comprobarIBAN(calculo));
+	console.log(comprobar);
+
 }		

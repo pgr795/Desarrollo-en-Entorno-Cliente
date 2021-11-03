@@ -251,27 +251,46 @@ var codigo;
 
 function comprobarIBAN(parametro){
 	var valido=true;
-	
+	var iban=parametro.substring(4,34).trim();
+	console.log(iban);
+	var cuatroLetras=parametro.substring(0,4);
+	console.log(cuatroLetras);
+	var longitud=cuatroLetras.length;
+
+	console.log(cuatroLetras);
+	console.log(typeof iban);
 	if(parametro.length <=34){
 		var tabla1=new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-		//var tabla2=new array(10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35);
-		console.log(tabla1);
-		console.log(tabla2);
 		var tabla2=new Array(25);
-
+	
 		for (let y= 0; y < tabla1.length; y++) {
-			tabla2[y]=y+10;
+			tabla2[y+10]=tabla1[y];
 		}
-
-		console.log(tabla2);
+		
 	}
+	//Convertir letras a numeros
+	var letrasfinal="";
+	for (let i = 0; i < longitud; i++) {
+		let aux=cuatroLetras.charAt(i);
+		console.log(aux);
+		if(esLetra2(aux)){
+			let aux2=String(tabla2.indexOf(aux));
+			letrasfinal+=aux2;
+		}
+		else{
+			letrasfinal+=aux;
+		}
+	}
+	console.log(letrasfinal);
+	var ibanConvertido=iban+letrasfinal;
 	
 	
+	console.log(typeof ibanConvertido);
+	console.log(ibanConvertido);
 	
-	
-	
-	
-	
+	var resto=parseInt(ibanConvertido)%97;
+	console.log(resto);
+
 	if(valido){
 		return true;
 	}
