@@ -250,7 +250,6 @@ var codigo;
 //--------------------------------------------------------------------------------------------
 
 function comprobarIBAN(parametro){
-	var valido=true;
 	var iban=parametro.substring(4,34).trim();
 	console.log(iban);
 	var cuatroLetras=parametro.substring(0,4);
@@ -273,7 +272,7 @@ function comprobarIBAN(parametro){
 	for (let i = 0; i < longitud; i++) {
 		let aux=cuatroLetras.charAt(i);
 		console.log(aux);
-		if(esLetra2(aux)){
+		if(esLetra3(aux)){
 			let aux2=String(tabla2.indexOf(aux));
 			letrasfinal+=aux2;
 		}
@@ -291,13 +290,12 @@ function comprobarIBAN(parametro){
 	var resto=parseInt(ibanConvertido)%97;
 	console.log(resto);
 
-	if(valido){
+	if(resto==1){
 		return true;
 	}
 	else{
 		return false;
-	}
-	
+	}	
 }
 
 

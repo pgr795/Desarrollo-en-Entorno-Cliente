@@ -5,20 +5,29 @@ window.onload= inicio;
 		
 function inicio(){
 	document.primero.onsubmit=validar;
-	document.primero.cif.onchange=validar;
 	
-	document.primero.onsubmit=validar;
-	document.primero.NifCif.onchange=validar;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------
 
 function validar(){
-	let datoNIf=document.primero.nif.value;
-	let datoCif=document.primero.cif.value;
-	let datoNifCif=document.primero.NifCif.value;
-	alert(datoNifCif)
+	
+	let enviar=true; 
+	let mensaje="";
+	var razon_Social=document.primero.razonSocial.value;
+	var aux=razonSocial(razon_Social);
+	if(!aux){
+		enviar=false;
+		mensaje+="Razon_Social no cumple el patrón \n";
+	}
+		
+	alert(mensaje);
+
+	alert(razonSocial(razon_Social));
+	console.log(razonSocial(razon_Social));
+
 	var cifEs=esCif(datoCif);
+
 	if(cifEs==1){
 		console.log("Se ha introducido un cif correcto.");
 	
@@ -60,9 +69,11 @@ function validar(){
 	
 	//var calculo=calculoIBANEspanya("21000418401234567891");
 	//console.log(comprobarIBAN(calculo));
-	//alert(calculo);
-	var comprobar=comprobarIBAN("ES6621000418401234567891");
+
+	var comprobar=comprobarIBAN("PT66210004184012124");
 	//console.log(comprobarIBAN(calculo));
 	console.log(comprobar);
-
+	if(!enviar)
+		alert(mensaje);
+	return enviar;
 }		

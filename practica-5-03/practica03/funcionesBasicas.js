@@ -32,26 +32,33 @@ function esLetra2(letra){
 		console.log(letra);
 		return (letras.includes(letra));
 	}
+
+function esLetra3(letra){
+		var letra = letra.toUpperCase();
+		var letras=("A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z");
+		console.log(letra);
+		return (letras.includes(letra));
+	}
 	
 function esNumero(numero){
 		console.log(numero);
 		return (numero < "0" || numero > "9");
 	}
 
-/* function esNIF(nif){
-	var valido=true;
 
-	
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function razonSocial(parametro){
+	var primeraLetra=parametro.substring(0,1).toUpperCase();;
+	var medio = parametro.substring(1,parametro.length-1).toUpperCase();
+	var fin = domicilio.substring(parametro.length-1).toUpperCase();
+	alert(primeraLetra);
+	alert(medio);
+	alert(fin);
+
+	return false;
 }
-
-function esCIF(cif){
-	
-	
-}
- */
-
-
-//--------------------------------------------------------------------------------------------	
 
 function validarCodigoPostal(){
 		var validarCodigoPostal = true;
