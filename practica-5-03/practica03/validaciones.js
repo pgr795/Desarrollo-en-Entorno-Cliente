@@ -164,11 +164,6 @@ if(mensaje=="C2"){
 return mensaje;
 }
 
-
-
-
-
-
 // 	if(aux==1){
 // 		mensaje="C1";
 // 	}

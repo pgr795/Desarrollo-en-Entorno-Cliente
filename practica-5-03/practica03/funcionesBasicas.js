@@ -2,11 +2,10 @@ function esLetraPlus(letra){
 		var letra = letra.toUpperCase();
 		var numeros =("0123456789");
 		var masLetras=("ÚÁÉÍÓÑÜ");
-		var especiales=(",º.");
-		var espacio=(" ");
+		var especiales=("-ªº./ ");
 		console.log(letra);
 		console.log(numeros);
-		return ((letra >= "A" && letra <="Z") || numeros.includes(letra) || masLetras.includes(letra) || espacio.includes(letra) || especiales.includes(letra));
+		return ((letra >= "A" && letra <="Z") || numeros.includes(letra) || masLetras.includes(letra) || especiales.includes(letra));
 	}
 	
 function esLetraYNumeros(letra){
@@ -68,6 +67,7 @@ function razonSocial(parametro){
 			return validarRazonSocial;
 		}
 		contador++;
+
 	}  
 
 	while(contador2 != medio.length){
@@ -80,6 +80,7 @@ function razonSocial(parametro){
 			return validarRazonSocial;
 		}
 		contador2++;
+		return validarRazonSocial;
 	} 
 
 	while(contador3 != fin.length){
@@ -92,8 +93,8 @@ function razonSocial(parametro){
 			return validarRazonSocial;
 		}
 		contador3++;
+		return validarRazonSocial;
 	}   
-	return validarRazonSocial=true;
 }
 
 function codigoEmpresa(parametro){
@@ -105,7 +106,6 @@ function codigoEmpresa(parametro){
 
 	if(longitud <= 5 && longitud >= 10){
 		letra=codigo_Empresa.charAt(contador);
-
 		while(contador != codigo_Empresa.length){
 			letra=codigo_Empresa.charAt(contador);
 			if(!(esLetraYNumeros(letra))){
@@ -122,222 +122,230 @@ function codigoEmpresa(parametro){
 	return codigoEmpresa;
 }
 
+function validarDireccion(parametro){
+	var direccion = parametro;
+	var direccionValida=true;
+	var inicio = direccion.substring(0,3).toUpperCase();
+	var medio = direccion.substring(3,direccion.length-1).toUpperCase();
+	var fin = direccion.substring(direccion.length-1,direccion.length).toUpperCase();	
+	var longitud= direccion.length;
+	var contador = 0;
+	var contador2 = 0;
+	var contador3 = 0;
+	var letra ="";
+	console.log(direccion);
+	console.log(inicio);
+	console.log(medio);
+	console.log(fin);
+	console.log(longitud);
+	
+	if(direccion.length > 10 && direccion.length < 30){
+		console.log("bb");
+		//inicio
+		while(contador != inicio.length){
+			letra=inicio.charAt(contador);
+				console.log("aaaaaaa");
+			if(!(esLetra(letra))){
+				console.log("aaaaaaa1");
+				var direccionValida=false;
+				return direccionValida;
+			}
+			contador++;
+		}  
+		//medio
+		while(contador2 != medio.length){
+			letra=medio.charAt(contador2);
+				console.log("bbbbbb");
+			if(!(esLetraPlus(letra))){
+				console.log("aaaaaaa2");
+				var direccionValida=false;
+				return direccionValida;
+			}
+			contador2++;
+		}  
+		//Fin
+		while(contador3 != fin.length){
+			letra=fin.charAt(contador3);
+				console.log("cccccc");
+			if	(!(esLetraYNumeros(letra))){
+				console.log("aaaaaaa3");
+				var direccionValida=false;
+				return direccionValida;
+			}
+			contador3++;
+		}  
+	}
+	else{
+		var direccionValida=false;	
+	}				
+}
 
+function validarLocalidad(parametro){
+	var localidad = parametro;
+	var localidadValida=true;
+	var inicio = localidad.substring(0,3).toUpperCase();
+	var medio = localidad.substring(3,localidad.length-3).toUpperCase();
+	var fin = localidad.substring(localidad.length-3,localidad.length).toUpperCase();	
+	var longitud= localidad.length;
+	var contador = 0;
+	var contador2 = 0;
+	var contador3 = 0;
+	var letra ="";
+	console.log(localidad);
+	console.log(inicio);
+	console.log(medio);
+	console.log(fin);
+	console.log(longitud);
+	
+	if(localidad.length > 5 && localidad.length < 30){
+		//inicio
+		while(contador != inicio.length){
+			letra=inicio.charAt(contador);
+		
+			if(!(esLetra(letra))){
+				var localidadValida=false;
+				return localidadValida;
+			}
+			contador++;
+		}  
+		//medio
+		while(contador2 != medio.length){
+			letra=medio.charAt(contador2);
+			if(!(esLetra(letra))){
+				var localidadValida=false;
+				return localidadValida;
+			}
+			contador2++;
+		}  
+		//Fin
+		while(contador3 != fin.length){
+			letra=fin.charAt(contador3);
+			if(!(esLetra(letra))){
+				var localidadValida=false;
+				return localidadValida;
+			}
+			contador3++;
+		}  
+	}
+	else{
+		var localidadValida=false;
+		return localidadValida;
+	}			
+		return localidadValida;
+}
 
-
-function validarCodigoPostal(){
+function validarCodigoPostal(parametro){	
 		var validarCodigoPostal = true;
-		var codigoPostal = document.primero.cp.value;
-		console.log(codigoPostal);	
+		var codigoPostal = parametro;
+		console.log(codigoPostal);
+
 		for(var i = 0;i < codigoPostal.length; i++){
-			console.log("aaaaaaa");
-			if(!esNumero(codigoPostal[i])){
-				alert("Error");
-				return false;
-			}			
-		}
-		codigoPostal = parseInt(codigoPostal);
-		return codigoPostal > 1000 && codigoPostal <= 52999;
-		}
-		
-function validarLocalidad(){
-			var localidad = document.primero.localidad.value;
-			var inicio = localidad.substring(0,3).toUpperCase();
-			var medio = localidad.substring(3,localidad.length-3).toUpperCase();
-			var fin = localidad.substring(localidad.length-3,localidad.length).toUpperCase();	
-			var longitud= localidad.length;
-			var contador = 0;
-			var contador2 = 0;
-			var contador3 = 0;
-			var letra ="";
-			console.log(localidad);
-			console.log(inicio);
-			console.log(medio);
-			console.log(fin);
-			console.log(longitud);
-			
-			if(localidad.length > 10 && localidad.length < 30){
-				console.log("bb");
-				//inicio
-				while(contador != inicio.length){
-					letra=inicio.charAt(contador);
-						console.log("aaaaaaa");
-					if(!(esLetra(letra))){
-						console.log("aaaaaaa1");
-						alert("Error");
-						return false;
-					}
-					contador++;
-				}  
-				//medio
-				while(contador2 != medio.length){
-					letra=medio.charAt(contador2);
-						console.log("bbbbbb");
-					if(!(esLetra(letra))){
-						console.log("aaaaaaa2");
-						alert("Error");
-						return false;
-					}
-					contador2++;
-				}  
-				//Fin
-				while(contador3 != fin.length){
-					letra=fin.charAt(contador3);
-						console.log("cccccc");
-					if(!(esLetra(letra))){
-						console.log("aaaaaaa3");
-						alert("Error");
-						return false;
-					}
-					contador3++;
-				}  
-			}				
-		}
-		
-function validarDomicilio(){
-			var domicilio = document.primero.domicilio.value;
-			var inicio = domicilio.substring(0,3).toUpperCase();
-			var medio = domicilio.substring(3,domicilio.length-1).toUpperCase();
-			var fin = domicilio.substring(domicilio.length-1,domicilio.length).toUpperCase();	
-			var longitud= domicilio.length;
-			var contador = 0;
-			var contador2 = 0;
-			var contador3 = 0;
-			var letra ="";
-			console.log(domicilio);
-			console.log(inicio);
-			console.log(medio);
-			console.log(fin);
-			console.log(longitud);
-			
-			if(domicilio.length > 10 && domicilio.length < 30){
-				console.log("bb");
-				//inicio
-				while(contador != inicio.length){
-					letra=inicio.charAt(contador);
-						console.log("aaaaaaa");
-					if(!(esLetra(letra))){
-						console.log("aaaaaaa1");
-						alert("Error");
-						return false;
-					}
-					contador++;
-				}  
-				//medio
-				while(contador2 != medio.length){
-					letra=medio.charAt(contador2);
-						console.log("bbbbbb");
-					if(!(esLetraPlus(letra))){
-						console.log("aaaaaaa2");
-						alert("Error");
-						return false;
-					}
-					contador2++;
-				}  
-				//Fin
-				while(contador3 != fin.length){
-					letra=fin.charAt(contador3);
-						console.log("cccccc");
-					if	(!(esLetraYNumeros(letra))){
-						console.log("aaaaaaa3");
-						alert("Error");
-						return false;
-					}
-					contador3++;
-				}  
-			}				
-		}
-		
-function validarApellido(){
-			var apellido = document.primero.apellidos.value;
-			var inicio = apellido.substring(0,4).toUpperCase();
-			var medio = apellido.substring(4,apellido.length-5).toUpperCase();
-			var fin = apellido.substring(apellido.length-5,apellido.length).toUpperCase();	
-			var validarApellido = true;
-			var longitud= apellido.length;
-			var contador = 0;
-			var contador2 = 0;
-			var contador3 = 0;
-			var letra ="";
-			console.log(apellido);
-			console.log(inicio);
-			console.log(medio);
-			console.log(fin);
-			console.log(longitud);
-			
-			if(apellido.length > 12 && apellido.length < 35){
-				console.log("bb");
-				//inicio
-				while(contador != inicio.length){
-					letra=inicio.charAt(contador);
-						console.log("aaaaaaa");
-					if(!(esLetra(letra))){
-						console.log("aaaaaaa1");
-						alert("Error");
-						return false;
-					}
-					contador++;
-				}  
-				//medio
-				while(contador2 != medio.length){
-					letra=medio.charAt(contador2);
-						console.log("bbbbbb");
-					if(!(esLetra(letra))){
-						console.log("aaaaaaa2");
-						alert("Error");
-						return false;
-					}
-					contador2++;
-				}  
-				//Fin
-				while(contador3 != fin.length){
-					letra=fin.charAt(contador3);
-						console.log("cccccc");
-					if(!(esLetra(letra))){
-						console.log("aaaaaaa3");
-						alert("Error");
-						return false;
-					}
-					contador3++;
-				}  
-			}						
-		}
-		
-function comprobarCP(){
-		var cp = document.primero.cp.value;
-		let longitud = cp.length;
-		let validar= true;
-		let aux="";
-		console.log(cp);
-		console.log(aux);
-		console.log(longitud);
-		
-		if(cp != null && longitud == 5)
-		{
-			for(i=0;i < cp.length; i++){
-				aux = cp.charAt(i);
-					if(esNumero(aux)){
-						alert("Error");
-						validar=false;	
-					}	
-					/* if(Number.isInteger(aux)){
-						validar=false;	
-					}	 */					
+			if(esNumero(codigoPostal[i])){
+				var validarCodigoPostal = false;
+				return validarCodigoPostal;
+			}
+			if(!codigoPostal > 1000 && !codigoPostal <= 52999){
+				var validarCodigoPostal = false;
+				return validarCodigoPostal;
 			}
 		}
-		else{
-			validar=false;
-		}
-
-		if(validar){
-			provincia = provincias[parseInt(cp.substring(0,2))-1];
-			document.primero.provincia.value = provincia;
-		}
-		else{		
-			document.primero.provincia.value = "Error";
-		}
+		return validarCodigoPostal;
 	}
 	
-function bienvenido(){
-		alert("Bienvenido");
+	function validarTelefono(parametro){
+		var telefono = parametro;
+		var inicio = parametro.substring(0,1).toUpperCase();
+		var validartelefono = true;
+		var contador = 0;
+		var numero = "";
+		if(telefono.length == 9){
+			//inicio
+			if(inicio==9 || inicio==6 || inicio==7){
+				while(contador != telefono.length){
+					numero=telefono.charAt(contador);
+					if(esNumero(numero)){
+						var validartelefono = false;
+					}
+					contador++;
+				} 
+			}
+			else{
+				var validartelefono = false;
+			}	 
+		}
+		else{
+			var validartelefono = false;
+		}	
+		return validartelefono;					
 	}
+
+	function validarFax(parametro){
+		var fax = parametro;
+		var inicio = parametro.substring(0,1).toUpperCase();
+		var validarfax = true;
+		var contador = 0;
+		var numero = "";
+		if(fax.length == 9){
+			//inicio
+			if(inicio==9){
+				while(contador != fax.length){
+					numero=fax.charAt(contador);
+					if(esNumero(numero)){
+						var validarfax = false;
+					}
+					contador++;
+				} 
+			}
+			else{
+				var validarfax = false;
+			}	 
+		}
+		else{
+			var validarfax = false;
+		}	
+		return validarfax;					
+	}
+
+	function numerosPositivos(parametro){
+		var numeroPositivo = parametro;
+		var validarNumeroPositivo = true;
+		var contador = 0;
+		var numero = "";
+			//inicio
+			while(contador != numeroPositivo.length){
+				numero=numeroPositivo.charAt(contador);
+				if(esNumero(numero)){
+					validarNumeroPositivo = false;
+				}
+				contador++;
+			}  	
+		return validarNumeroPositivo;					
+	}
+
+	function comprobarFecha(parametro) {
+		var fecha=parametro;
+		if(fecha.includes("-")){
+			arrayFecha = fecha.split("-");
+		}else if(fecha.includes("/")){
+			arrayFecha = fecha.split("/");
+		}else {
+			return false;
+		}
+	
+		if(arrayFecha.length == 3){
+			if(arrayFecha[0].length != 1 && arrayFecha[0].length != 2){
+				return false;
+			}
+			if(arrayFecha[1].length != 1 && arrayFecha[1].length != 2){
+				return false;
+			}
+			if(arrayFecha[2].length != 2 && arrayFecha[2].length != 4){
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+
+
+
