@@ -59,23 +59,16 @@ function razonSocial(parametro){
 
 	while(contador != primeraLetra.length){
 		letra=primeraLetra.charAt(contador);
-			console.log("aaaaaaa");
 		if(!(esLetra(letra))){
-			console.log("aaaaaaa1");
-			alert("Error");
 			validarRazonSocial=false;
 			return validarRazonSocial;
 		}
 		contador++;
-
 	}  
 
 	while(contador2 != medio.length){
 		letra=medio.charAt(contador2);
-			console.log("bbbbbb");
 		if(!(esLetra(letra))){
-			console.log("aaaaaaa2");
-			alert("Error");
 			validarRazonSocial=false;
 			return validarRazonSocial;
 		}
@@ -85,10 +78,7 @@ function razonSocial(parametro){
 
 	while(contador3 != fin.length){
 		letra=fin.charAt(contador3);
-			console.log("cccccc");
 		if(!(esLetra(letra))){
-			console.log("aaaaaaa3");
-			alert("Error");
 			validarRazonSocial=false;
 			return validarRazonSocial;
 		}
@@ -101,10 +91,9 @@ function codigoEmpresa(parametro){
 	var codigoEmpresa=true;
 	var codigo_Empresa=parametro;
 	var letra="";
-	var longitud=parametro.length;
 	var contador = 0;
 
-	if(longitud <= 5 && longitud >= 10){
+	if(codigo_Empresa.length > 5 && codigo_Empresa.length < 10){
 		letra=codigo_Empresa.charAt(contador);
 		while(contador != codigo_Empresa.length){
 			letra=codigo_Empresa.charAt(contador);
@@ -117,7 +106,6 @@ function codigoEmpresa(parametro){
 	}
 	else{
 		codigoEmpresa=false;
-		return codigoEmpresa;
 	}
 	return codigoEmpresa;
 }
@@ -140,14 +128,11 @@ function validarDireccion(parametro){
 	console.log(longitud);
 	
 	if(direccion.length > 10 && direccion.length < 30){
-		console.log("bb");
 		//inicio
 		while(contador != inicio.length){
 			letra=inicio.charAt(contador);
-				console.log("aaaaaaa");
 			if(!(esLetra(letra))){
-				console.log("aaaaaaa1");
-				var direccionValida=false;
+				direccionValida=false;
 				return direccionValida;
 			}
 			contador++;
@@ -155,10 +140,8 @@ function validarDireccion(parametro){
 		//medio
 		while(contador2 != medio.length){
 			letra=medio.charAt(contador2);
-				console.log("bbbbbb");
 			if(!(esLetraPlus(letra))){
-				console.log("aaaaaaa2");
-				var direccionValida=false;
+				direccionValida=false;
 				return direccionValida;
 			}
 			contador2++;
@@ -166,18 +149,17 @@ function validarDireccion(parametro){
 		//Fin
 		while(contador3 != fin.length){
 			letra=fin.charAt(contador3);
-				console.log("cccccc");
 			if	(!(esLetraYNumeros(letra))){
-				console.log("aaaaaaa3");
-				var direccionValida=false;
+				direccionValida=false;
 				return direccionValida;
 			}
 			contador3++;
 		}  
 	}
 	else{
-		var direccionValida=false;	
-	}				
+		direccionValida=false;
+	}		
+	return direccionValida;			
 }
 
 function validarLocalidad(parametro){
@@ -203,7 +185,7 @@ function validarLocalidad(parametro){
 			letra=inicio.charAt(contador);
 		
 			if(!(esLetra(letra))){
-				var localidadValida=false;
+				localidadValida=false;
 				return localidadValida;
 			}
 			contador++;
@@ -212,7 +194,7 @@ function validarLocalidad(parametro){
 		while(contador2 != medio.length){
 			letra=medio.charAt(contador2);
 			if(!(esLetra(letra))){
-				var localidadValida=false;
+				localidadValida=false;
 				return localidadValida;
 			}
 			contador2++;
@@ -221,36 +203,39 @@ function validarLocalidad(parametro){
 		while(contador3 != fin.length){
 			letra=fin.charAt(contador3);
 			if(!(esLetra(letra))){
-				var localidadValida=false;
+				localidadValida=false;
 				return localidadValida;
 			}
 			contador3++;
 		}  
 	}
 	else{
-		var localidadValida=false;
+		localidadValida=false;
 		return localidadValida;
 	}			
 		return localidadValida;
 }
 
 function validarCodigoPostal(parametro){	
-		var validarCodigoPostal = true;
-		var codigoPostal = parametro;
-		console.log(codigoPostal);
-
+	var validarCodigoPostal = true;
+	var codigoPostal = parametro;
+	 if(codigoPostal.length==5){
 		for(var i = 0;i < codigoPostal.length; i++){
 			if(esNumero(codigoPostal[i])){
-				var validarCodigoPostal = false;
+				validarCodigoPostal = false;
 				return validarCodigoPostal;
 			}
 			if(!codigoPostal > 1000 && !codigoPostal <= 52999){
-				var validarCodigoPostal = false;
+				validarCodigoPostal = false;
 				return validarCodigoPostal;
 			}
 		}
-		return validarCodigoPostal;
 	}
+	else{
+		validarCodigoPostal=false;
+	}
+	return validarCodigoPostal;
+}
 	
 	function validarTelefono(parametro){
 		var telefono = parametro;
@@ -264,17 +249,17 @@ function validarCodigoPostal(parametro){
 				while(contador != telefono.length){
 					numero=telefono.charAt(contador);
 					if(esNumero(numero)){
-						var validartelefono = false;
+						validartelefono = false;
 					}
 					contador++;
 				} 
 			}
 			else{
-				var validartelefono = false;
+				validartelefono = false;
 			}	 
 		}
 		else{
-			var validartelefono = false;
+			validartelefono = false;
 		}	
 		return validartelefono;					
 	}
@@ -291,36 +276,52 @@ function validarCodigoPostal(parametro){
 				while(contador != fax.length){
 					numero=fax.charAt(contador);
 					if(esNumero(numero)){
-						var validarfax = false;
+						validarfax = false;
 					}
 					contador++;
 				} 
 			}
 			else{
-				var validarfax = false;
+				validarfax = false;
 			}	 
 		}
 		else{
-			var validarfax = false;
+			validarfax = false;
 		}	
 		return validarfax;					
 	}
 
 	function numerosPositivos(parametro){
 		var numeroPositivo = parametro;
-		var validarNumeroPositivo = true;
+		var validarNumeroPositivo = false;
 		var contador = 0;
 		var numero = "";
 			//inicio
 			while(contador != numeroPositivo.length){
 				numero=numeroPositivo.charAt(contador);
-				if(esNumero(numero)){
-					validarNumeroPositivo = false;
+				if(!esNumero(numero)){
+					validarNumeroPositivo = true;
 				}
 				contador++;
 			}  	
 		return validarNumeroPositivo;					
 	}
+
+	function comprobarComunidades(parametro) {
+		var comunidades = parametro;
+		var contador = 0;
+		var validarComunidad=true;
+	  
+		for (let i = 0; i < comunidades.length; i++) {
+		  if (comunidades[i].selected) {
+			contador++;
+		  }
+		}
+		if (contador < 2){
+			validarComunidad=false;
+		}
+		return validarComunidad;
+	  }
 
 	function comprobarFecha(parametro) {
 		var fecha=parametro;
@@ -347,5 +348,88 @@ function validarCodigoPostal(parametro){
 		return false;
 	}
 
+function comprobarCodBancoYOficina(parametro,parametro2){
+	var codbanco=parametro;
+	var codoficina=parametro2;
+	var validarcodbanco = true;
+	var validarcodoficina = true;
+	var contador=0;
+	var contador1=0;
+	var numero="";
+	if(codbanco.length==4 && codoficina.length==4){
+		while(contador != codbanco.length){
+			numero=codbanco.charAt(contador);
+			if(esNumero(numero)){
+				validarcodbanco = false;
+			}
+			contador++;
+		}  	
+		while(contador1 != codoficina.length){
+			numero=codoficina.charAt(contador1);
+			if(esNumero(numero)){
+				validarcodoficina = false;
+			}
+			contador1++;
+		}  	
+	}
+	else{
+		validarcodoficina = false;
+		validarcodbanco = false;	
+	}	
+	return validarcodoficina && validarcodbanco;					
+}
 
+function comprobarNumeroCuenta(parametro){
+	var numeroCuenta=parametro;
+	var contador=0;
+	var validarNumeroCuenta=true;
+	if(numeroCuenta.length==10){
+		while(contador != numeroCuenta.length){
+			numero=numeroCuenta.charAt(contador);
+			if(esNumero(numero)){
+				validarNumeroCuenta = false;
+			}
+			contador++;
+		}  	
+	}
+	else{
+		validarNumeroCuenta = false;
+	}
+	return validarNumeroCuenta;
+}
+
+function comprobarSeleccion(parametro,parametro2) {
+	var contador = 0;
+	var seleccion=parametro;
+	var seleccion2=parametro2;
+	var comprobarSeleccionCheck = true;
+	var comprobarSeleccionRadio = true;
+	var valido=true;
+	for (let i = 0; i < seleccion.length; i++) {
+	  if (seleccion[i].type == "checkbox" && seleccion[i].checked){
+		contador++;
+	  }
+	}
+  
+	if (con < 1){
+		comprobarSeleccionCheck = false;
+		contador = 0;
+	}
+  
+	for (let i = 0; i < seleccion2.length; i++) {
+	  if (seleccion2[i].type == "radio" && seleccion2[i].checked) {
+		  contador++;
+	  }
+	}
+	if (contador > 2){
+		comprobarSeleccionRadio = false;
+	}
+	
+	if(comprobarSeleccionCheck && comprobarSeleccionRadio){
+		return valido;
+	}
+	else{
+		return valido=false;
+	}
+  }
 

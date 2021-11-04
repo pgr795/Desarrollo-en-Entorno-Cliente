@@ -2,10 +2,22 @@ window.onload= inicio;
 
 /* console.log("aaaaaaa");		
   console.log("bbbbbbb");	 */
+	//Pablo
+	//codEmpresa 1245P
 	//NIF 40266637P
 	//CIF P8553129B	
     //ES6621000418401234567891	
-	//Calle Juan Alonso nº15	
+	//630227490
+	//Calle Juan Alonso nº15
+	//Madrid
+	//28047
+	//912345678
+	//codBanco 1234
+	// codOficina 1234
+	//numeroCuenta 1234567890
+	//fechaEmpresa 20-04-2020
+	// 12
+	// 12
 function inicio(){
 	document.primero.onsubmit=validar;
 }
@@ -80,6 +92,10 @@ function validar(){
 	var fax=document.primero.fax.value;
 	var numeroPositivo=document.primero.numeroTrabajadores.value;
 	var fecha=document.primero.fechaEmpresa.value;
+	var Comunidades=document.primero.comunidades;
+	var codBanco=document.primero.codigoBanco.value;
+	var codOficina=document.primero.codigoOficina.value;
+	var numeroCuenta=document.primero.numeroCuenta.value;
 
 
 	var aux=razonSocial(razon_Social);
@@ -92,6 +108,11 @@ function validar(){
 	var aux7=validarFax(fax);
 	var aux8=numerosPositivos(numeroPositivo);
 	var aux9=comprobarFecha(fecha);
+	var aux10=comprobarComunidades(Comunidades);
+	var aux11=comprobarCodBancoYOficina(codBanco,codOficina);
+ 	var aux12=comprobarNumeroCuenta(numeroCuenta);
+	/* var aux13=codigosControl(codBanco,codOficina,numeroCuenta);  */
+	// var aux14=comprobarSeleccion(seleccion,seleccion2);
 
 
 	if(!aux){
@@ -146,6 +167,27 @@ function validar(){
 		enviar=false;
 		mensaje+="La Fecha no es valido \n";
 	}
+	if(!aux10){
+		enviar=false;
+		mensaje+="Error del Número de comunidades \n";
+	}
+	if(!aux11){
+		enviar=false;
+		mensaje+="Codigo Banco y Codigo de Oficina tienen un Formato incorrecto \n";
+	}
+	if(!aux12){
+		enviar=false;
+		mensaje+="Numero de cuenta no tiene un Formato incorrecto \n";
+	}
+	/* if(!aux13){
+		enviar=false;
+		mensaje+="Codigo Banco y Codigo de Oficina tienen un Formato incorrecto \n";
+	} */
+	/* if(!aux14){
+		enviar=false;
+		mensaje+="No se ha seleccionado ninguna casilla de verificación \n";
+		mensaje+="o has seleccionado mas casillas\n";
+	} */
 
 
 		
@@ -193,7 +235,13 @@ function validar(){
 	var comprobar=comprobarIBAN(calculo);
 	//console.log(comprobarIBAN(calculo));
 	console.log(comprobar);
-	if(!enviar)
+	
+	if(!enviar){
 		alert(mensaje);
-	return enviar;
+	}
+	else{
+		alert("Se ha enviado el formulario");
+		return enviar;
+	}
+	
 }		
