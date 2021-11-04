@@ -36,7 +36,7 @@ function esNif (parametro) {
 	}
 	return 0;
 }
- 
+
 //--------------------------------------------------------------------------------------------
 	
 function esCif(cif){
@@ -59,7 +59,7 @@ function esCif(cif){
 		if(!(esLetra2(letra))){
 			validarLetra=false;
 		}
-		for(var i=0; i < 7; i++){
+		for(var i=0; i < 7; i++){ //8
 			var numero=numeros.charAt(i);
 			console.log(numero);
 			if(esNumero(numero)){
@@ -140,33 +140,61 @@ function esCif(cif){
 function nif_cif(datos){
 var dato=datos;
 var mensaje="";
+var aux=esCif(dato);
+var aux2=esNif(dato);
 
-	if(esCif(dato)){
-		mensaje="C1";
-	}
-	else if(esCif(dato)){
-		mensaje="C2";
-	}
-	else{
-		mensaje=0;
-	}
-
-	if(mensaje==0){
-		if(esNif(dato)==1){
-			mensaje="N1";
-		}	
-		else if(esNif(dato)==2){
-			mensaje="N2";
-		}
-		else if(esNif(dato)==3){
-			mensaje="N3";
-		}
-		else if(esNif(dato)==0){
-			mensaje=0;
-		}
-	}
-	return mensaje;
+if(aux==1){
+	mensaje="C1";
 }
+else if(aux==2){
+	mensaje="C2";
+}
+
+if(mensaje=="C2"){
+	if(aux2==1){
+		mensaje="N1";
+	}	
+	else if(aux2==2){
+		mensaje="N2";
+	}
+	else if(aux2==0){
+		mensaje="N3";
+	}
+}
+return mensaje;
+}
+
+
+
+
+
+
+// 	if(aux==1){
+// 		mensaje="C1";
+// 	}
+// 	else if(aux==2){
+// 		mensaje="C2";
+// 	}
+// 	else{
+// 		mensaje=0;
+// 	}
+
+// 	if(mensaje==0){
+// 		if(esNif(dato)==1){
+// 			mensaje="N1";
+// 		}	
+// 		else if(esNif(dato)==2){
+// 			mensaje="N2";
+// 		}
+// 		else if(esNif(dato)==3){
+// 			mensaje="N3";
+// 		}
+// 		else if(esNif(dato)==0){
+// 			mensaje=0;
+// 		}
+// 	}
+// 	return mensaje;
+// }
 
 //--------------------------------------------------------------------------------------------
 
