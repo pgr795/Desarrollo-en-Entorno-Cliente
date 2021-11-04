@@ -1,28 +1,40 @@
-function esNif (nif) {
+function esNif (parametro) {
 	var caracterControl = ["T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E"];
 	var letrasControl = ["X","Y","Z","L","K","M"];
-	if(nif.length == 9){
-		if(esLetra(nif[0]) && esLetra(nif[8])){
-			var nums = nif.substring(1,8);
-			if(letrasControl.includes(nif[0]) && caracterControl.includes(nif[8]) && esNumero(nums)){
-				nums = letrasControl.indexOf(nif[0]) + nums;
-				return caracterControl[nums%23] == nif[8];
+	if(parametro.length == 9){
+		if(esLetra(parametro[0]) && esLetra(parametro[8])){
+			var nums = parametro.substring(1,8);
+			if(letrasControl.includes(parametro[0]) && caracterControl.includes(parametro[8]) && esDigito(nums)){
+				nums = letrasControl.indexOf(parametro[0]) + nums;
+				if(caracterControl[nums%23] == parametro[8]){
+					return 1;
+				}else{
+					return 2;
+				}
 			}
-			return false;
-			alert("Error");
-		}else if(esLetra(nif[8])){
-			var nums = nif.substring(0,8);
+			return 0;
+		}else if(esLetra(parametro[8])){
+			var nums = parametro.substring(0,8);
 			if(esNumero(nums)){
-				return caracterControl[nums%23] == nif[8];
+				if(caracterControl[nums%23] == parametro[8]){
+					return 1;
+				}else{
+					return 2;
+				}
 			}
-			return false;
-			alert("Error");
+			return 0;
 		}
-		return false;
-		alert("Error");
+		return 0;
+	}else if(parametro.length >= 6  && parametro.length <= 8){
+		if(esNumero(parametro)){
+			if(parametro >= 100000){
+				return 3;
+			}
+			return 0;
+		}
+		return 0;
 	}
-	return false;
-	alert("Error");
+	return 0;
 }
  
 //--------------------------------------------------------------------------------------------
