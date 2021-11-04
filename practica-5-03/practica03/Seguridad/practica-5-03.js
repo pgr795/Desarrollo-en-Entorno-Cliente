@@ -2,43 +2,23 @@ window.onload= inicio;
 
 /* console.log("aaaaaaa");		
   console.log("bbbbbbb");	 */
-	//NIF M0444444S
-	//CIF P8553129B	
-    //ES6621000418401234567891	
+		
 function inicio(){
 	document.primero.onsubmit=validar;
+	document.primero.cif.onchange=validar;
+	
+	document.primero.onsubmit=validar;
+	document.primero.NifCif.onchange=validar;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------
 
 function validar(){
-	let enviar=true; 
-	let mensaje="";
-
-    
-    var razon_Social=document.primero.razonSocial.value;
-    var Codigo_Empresa=document.primero.codidoEmpresa.value;
-
-	var aux=razonSocial (razon_Social);
-	console.log(aux);
-
-	if(!aux){
-		enviar=false;
-		mensaje+="Razon_Social no cumple el patrón \n";
-        alert(mensaje);
-	}
-
-   var aux2=codigoEmpresa(Codigo_Empresa);
-   console.log(aux2);
-
-   if(!aux2){
-    enviar=false;
-    mensaje+="Codigo de Empresa no cumple el patrón \n";
-    // alert(mensaje);
-    }
-
+	let datoNIf=document.primero.nif.value;
+	let datoCif=document.primero.cif.value;
+	let datoNifCif=document.primero.NifCif.value;
+	alert(datoNifCif)
 	var cifEs=esCif(datoCif);
-
 	if(cifEs==1){
 		console.log("Se ha introducido un cif correcto.");
 	
@@ -78,13 +58,11 @@ function validar(){
 
 //-------------------------------------------------------------------------------------------------------------------------------------
 	
-	var calculo=calculoIBANEspanya("21000418401234567891");
-	console.log(comprobarIBAN(calculo));
-
-	var comprobar=comprobarIBAN("calculo");
+	//var calculo=calculoIBANEspanya("21000418401234567891");
+	//console.log(comprobarIBAN(calculo));
+	//alert(calculo);
+	var comprobar=comprobarIBAN("PT66210004184012124");
 	//console.log(comprobarIBAN(calculo));
 	console.log(comprobar);
-	if(!enviar)
-		alert(mensaje);
-	return enviar;
+
 }		

@@ -45,85 +45,20 @@ function esNumero(numero){
 		return (numero < "0" || numero > "9");
 	}
 
+/* function esNIF(nif){
+	var valido=true;
 
-
-//--------------------------------------------------------------------------------------------------------------------------------------------------------
-
-function razonSocial(parametro){
-	var primeraLetra=parametro.substring(0,1).toUpperCase();;
-	var medio = parametro.substring(1,parametro.length-1).toUpperCase();
-	var fin = parametro.substring(parametro.length-1).toUpperCase();
-	var contador = 0;
-	var contador2 = 0;
-	var contador3 = 0;
-	var validarRazonSocial=true;
-
-	while(contador != primeraLetra.length){
-		letra=primeraLetra.charAt(contador);
-			console.log("aaaaaaa");
-		if(!(esLetra(letra))){
-			console.log("aaaaaaa1");
-			alert("Error");
-			validarRazonSocial=false;
-			return validarRazonSocial;
-		}
-		contador++;
-	}  
-
-	while(contador2 != medio.length){
-		letra=medio.charAt(contador2);
-			console.log("bbbbbb");
-		if(!(esLetra(letra))){
-			console.log("aaaaaaa2");
-			alert("Error");
-			validarRazonSocial=false;
-			return validarRazonSocial;
-		}
-		contador2++;
-	} 
-
-	while(contador3 != fin.length){
-		letra=fin.charAt(contador3);
-			console.log("cccccc");
-		if(!(esLetra(letra))){
-			console.log("aaaaaaa3");
-			alert("Error");
-			validarRazonSocial=false;
-			return validarRazonSocial;
-		}
-		contador3++;
-	}   
-	return validarRazonSocial=true;
+	
 }
 
-function codigoEmpresa(parametro){
-	var codigoEmpresa=true;
-	var codigo_Empresa=parametro;
-	var letra="";
-	var longitud=parametro.length;
-	var contador = 0;
-
-	if(longitud <= 5 && longitud >= 10){
-		letra=codigo_Empresa.charAt(contador);
-
-		while(contador != codigo_Empresa.length){
-			letra=codigo_Empresa.charAt(contador);
-			if(!(esLetraYNumeros(letra))){
-				codigoEmpresa=false;
-				return codigoEmpresa;
-			}
-			contador++;
-		}  
-	}
-	else{
-		codigoEmpresa=false;
-		return codigoEmpresa;
-	}
-	return codigoEmpresa;
+function esCIF(cif){
+	
+	
 }
+ */
 
 
-
+//--------------------------------------------------------------------------------------------	
 
 function validarCodigoPostal(){
 		var validarCodigoPostal = true;
@@ -145,6 +80,7 @@ function validarLocalidad(){
 			var inicio = localidad.substring(0,3).toUpperCase();
 			var medio = localidad.substring(3,localidad.length-3).toUpperCase();
 			var fin = localidad.substring(localidad.length-3,localidad.length).toUpperCase();	
+			var validarLocalidad = true;
 			var longitud= localidad.length;
 			var contador = 0;
 			var contador2 = 0;
@@ -199,6 +135,7 @@ function validarDomicilio(){
 			var inicio = domicilio.substring(0,3).toUpperCase();
 			var medio = domicilio.substring(3,domicilio.length-1).toUpperCase();
 			var fin = domicilio.substring(domicilio.length-1,domicilio.length).toUpperCase();	
+			var validardomicilio = true;
 			var longitud= domicilio.length;
 			var contador = 0;
 			var contador2 = 0;
@@ -325,7 +262,8 @@ function comprobarCP(){
 					}	 */					
 			}
 		}
-		else{
+		else
+		{
 			validar=false;
 		}
 
