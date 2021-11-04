@@ -2,40 +2,29 @@ window.onload= inicio;
 
 /* console.log("aaaaaaa");		
   console.log("bbbbbbb");	 */
-	//NIF M0444444S
-	//CIF P8553129B	
-    //ES6621000418401234567891	
+		
 function inicio(){
 	document.primero.onsubmit=validar;
+	
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------
 
 function validar(){
+	
 	let enviar=true; 
 	let mensaje="";
-
-    
-    var razon_Social=document.primero.razonSocial.value;
-    var Codigo_Empresa=document.primero.codidoEmpresa.value;
-
-	var aux=razonSocial (razon_Social);
-	console.log(aux);
-
+	var razon_Social=document.primero.razonSocial.value;
+	var aux=razonSocial(razon_Social);
 	if(!aux){
 		enviar=false;
 		mensaje+="Razon_Social no cumple el patrón \n";
-        alert(mensaje);
 	}
+		
+	alert(mensaje);
 
-   var aux2=codigoEmpresa(Codigo_Empresa);
-   console.log(aux2);
-
-   if(!aux2){
-    enviar=false;
-    mensaje+="Codigo de Empresa no cumple el patrón \n";
-    // alert(mensaje);
-    }
+	alert(razonSocial(razon_Social));
+	console.log(razonSocial(razon_Social));
 
 	var cifEs=esCif(datoCif);
 
@@ -78,10 +67,10 @@ function validar(){
 
 //-------------------------------------------------------------------------------------------------------------------------------------
 	
-	var calculo=calculoIBANEspanya("21000418401234567891");
-	console.log(comprobarIBAN(calculo));
+	//var calculo=calculoIBANEspanya("21000418401234567891");
+	//console.log(comprobarIBAN(calculo));
 
-	var comprobar=comprobarIBAN("calculo");
+	var comprobar=comprobarIBAN("PT66210004184012124");
 	//console.log(comprobarIBAN(calculo));
 	console.log(comprobar);
 	if(!enviar)
