@@ -207,26 +207,26 @@ var caracterContro1;
 var caracterContro12;
 
 	if(codigodeBanco.length==4){
-		var num=parseInt(codigodeBanco.charAt(0))*4;
-		var num2=parseInt(codigodeBanco.charAt(1))*8;
-		var	num3=parseInt(codigodeBanco.charAt(2))*5;
-		var num4=parseInt(codigodeBanco.charAt(3))*10;
+		var num=parseInt(codigodeBanco.charAt(0),10)*4;
+		var num2=parseInt(codigodeBanco.charAt(1),10)*8;
+		var	num3=parseInt(codigodeBanco.charAt(2),10)*5;
+		var num4=parseInt(codigodeBanco.charAt(3),10)*10;
 
 		var numero1=num+num2+num3+num4;
 	}
 	
 	if(sucursal.length==4){
-		var num=parseInt(codigodeBanco.charAt(0))*9;
-		var num2=parseInt(codigodeBanco.charAt(1))*7;
-		var	num3=parseInt(codigodeBanco.charAt(2))*3;
-		var num4=parseInt(codigodeBanco.charAt(3))*6;
+		var num=parseInt(sucursal.charAt(0),10)*9;
+		var num2=parseInt(sucursal.charAt(1),10)*7;
+		var	num3=parseInt(sucursal.charAt(2),10)*3;
+		var num4=parseInt(sucursal.charAt(3),10)*6;
 	
 		var numero2=num+num2+num3+num4;
 		
 	}
 		var suma=numero1+numero2;
 		var resto=suma%11;
-		var modulo11=resto-11;
+		var modulo11=11-resto;
 	
 		if(modulo11==10){
 			caracterContro1=1;
@@ -235,7 +235,7 @@ var caracterContro12;
 			caracterContro1=0;
 		}
 		else{
-			caracterContro1=resto;
+			caracterContro1=modulo11;
 		}
 	
 	if(numeroDeCuenta.length==10){
@@ -245,7 +245,7 @@ var caracterContro12;
 			}
 	}
 		var resto=numero3%11;
-		var modulo11=resto-11;
+		var modulo11=11-resto;
 	
 		if(modulo11==10){
 			caracterContro12=1;
@@ -254,10 +254,10 @@ var caracterContro12;
 			caracterContro12=0;
 		}
 		else{
-			caracterContro12=resto;
+			caracterContro12=modulo11;
 		}	
 
-	return caracterContro1+" "+caracterContro12;
+	return caracterContro1+""+caracterContro12;
 }
 
 //--------------------------------------------------------------------------------------------
@@ -286,27 +286,23 @@ var codigo;
 
 function comprobarIBAN(parametro){
 	var iban=parametro.substring(4,34).trim();
-	console.log(iban);
 	var cuatroLetras=parametro.substring(0,4);
-	console.log(cuatroLetras);
+    var ibanValido=true;
 	var longitud=cuatroLetras.length;
 
-	console.log(cuatroLetras);
-	console.log(typeof iban);
 	if(parametro.length <=34){
 		var tabla1=new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
 		var tabla2=new Array(25);
 	
 		for (let y= 0; y < tabla1.length; y++) {
 			tabla2[y+10]=tabla1[y];
-		}
-		
+		}	
 	}
+
 	//Convertir letras a numeros
 	var letrasfinal="";
 	for (let i = 0; i < longitud; i++) {
 		let aux=cuatroLetras.charAt(i);
-		console.log(aux);
 		if(esLetra3(aux)){
 			let aux2=String(tabla2.indexOf(aux));
 			letrasfinal+=aux2;
@@ -315,22 +311,17 @@ function comprobarIBAN(parametro){
 			letrasfinal+=aux;
 		}
 	}
-	console.log(letrasfinal);
 	var ibanConvertido=iban+letrasfinal;
-	
-	
-	console.log(typeof ibanConvertido);
-	console.log(ibanConvertido);
-	
 	var resto=parseInt(ibanConvertido)%97;
-	console.log(resto);
+
 
 	if(resto==1){
-		return true;
+		ibanValido=true;
 	}
 	else{
-		return false;
+		ibanValido=false;
 	}	
+	return ibanValido;
 }
 
 

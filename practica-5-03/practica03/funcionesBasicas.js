@@ -398,38 +398,27 @@ function comprobarNumeroCuenta(parametro){
 	return validarNumeroCuenta;
 }
 
-function comprobarSeleccion(parametro,parametro2) {
+function comprobarSeleccion(parametro) {
 	var contador = 0;
 	var seleccion=parametro;
-	var seleccion2=parametro2;
-	var comprobarSeleccionCheck = true;
-	var comprobarSeleccionRadio = true;
+	var comprobarSeleccion= true;
 	var valido=true;
-	for (let i = 0; i < seleccion.length; i++) {
+	for (var i = 0; i < seleccion.length; i++) {
 	  if (seleccion[i].type == "checkbox" && seleccion[i].checked){
 		contador++;
 	  }
 	}
-  
-	if (con < 1){
-		comprobarSeleccionCheck = false;
+	if (contador < 1){
+		comprobarSeleccion = false;
 		contador = 0;
 	}
-  
-	for (let i = 0; i < seleccion2.length; i++) {
-	  if (seleccion2[i].type == "radio" && seleccion2[i].checked) {
+	for (var i = 0; i < seleccion.length; i++) {
+	  if (seleccion[i].type == "radio" && seleccion[i].checked) {
 		  contador++;
 	  }
 	}
 	if (contador > 2){
-		comprobarSeleccionRadio = false;
+		comprobarSeleccion = false;
 	}
-	
-	if(comprobarSeleccionCheck && comprobarSeleccionRadio){
 		return valido;
-	}
-	else{
-		return valido=false;
-	}
   }
-

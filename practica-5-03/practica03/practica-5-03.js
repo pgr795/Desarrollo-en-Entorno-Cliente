@@ -20,11 +20,11 @@ window.onload= inicio;
 	// 12
 function inicio(){
 	document.primero.onsubmit=validar;
+	document.primero.cp.onblur=ponerProvincia;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------
-
-function validar(){
+function ponerProvincia(){
 	var provincias =[
 		"Araba/Álava",
 		"Albacete",
@@ -79,6 +79,15 @@ function validar(){
 		"Ceuta",
 		"Melilla"];
 
+
+		var cp=document.primero.cp.value;
+		var valorcp=parseInt(cp,10);
+		var codigoPro=parseInt(valorcp/1000);
+		var provincia = provincias[codigoPro-1];
+		document.primero.provincia.value = provincia;
+}
+function validar(){
+
 	let enviar=true; 
 	let mensaje="";
 	
@@ -91,12 +100,14 @@ function validar(){
 	var telefono=document.primero.telefono.value;
 	var fax=document.primero.fax.value;
 	var numeroPositivo=document.primero.numeroTrabajadores.value;
+	var numeroPositivo2=document.primero.numeroFabricas.value;
 	var fecha=document.primero.fechaEmpresa.value;
 	var Comunidades=document.primero.comunidades;
 	var codBanco=document.primero.codigoBanco.value;
 	var codOficina=document.primero.codigoOficina.value;
 	var numeroCuenta=document.primero.numeroCuenta.value;
-
+    var iban=document.primero.iban.value;
+    var seleccion=document.primero.elements;
 
 	var aux=razonSocial(razon_Social);
     var aux2=codigoEmpresa(CodEmpresa);
@@ -107,12 +118,18 @@ function validar(){
 	var aux6=validarTelefono(telefono);
 	var aux7=validarFax(fax);
 	var aux8=numerosPositivos(numeroPositivo);
-	var aux9=comprobarFecha(fecha);
-	var aux10=comprobarComunidades(Comunidades);
-	var aux11=comprobarCodBancoYOficina(codBanco,codOficina);
- 	var aux12=comprobarNumeroCuenta(numeroCuenta);
-	/* var aux13=codigosControl(codBanco,codOficina,numeroCuenta);  */
-	// var aux14=comprobarSeleccion(seleccion,seleccion2);
+	var aux9=numerosPositivos(numeroPositivo2);
+	var aux10=comprobarFecha(fecha);
+	var aux11=comprobarComunidades(Comunidades);
+	var aux12=comprobarCodBancoYOficina(codBanco,codOficina);
+ 	var aux13=comprobarNumeroCuenta(numeroCuenta);
+	var aux14=codigosControl(codBanco,codOficina,numeroCuenta); 
+	var aux15=comprobarIBAN(iban);
+    var aux16=comprobarSeleccion(seleccion);
+
+
+/* 	var calculo=calculoIBANEspanya("21000418401234567891");
+	var comprobar=comprobarIBAN(calculo); */
 
 
 	if(!aux){
@@ -138,16 +155,6 @@ function validar(){
 	if(!aux5){
 		enviar=false;
 		mensaje+="El Codigo Postal no cumple el patrón \n";
-	}else{
-		if(aux5){
-			var cp=document.primero.cp.value;
-			var provincia = provincias[parseInt(cp.substring(0,2))-1];
-			document.primero.provincia.value = provincia;
-			document.primero.provincia.onchange= provincia;
-		}
-		else{		
-			document.primero.provincia.value = "Error";
-		}
 	}
 
 	if(!aux6){
@@ -165,30 +172,42 @@ function validar(){
 	}
 	if(!aux9){
 		enviar=false;
-		mensaje+="La Fecha no es valido \n";
+		mensaje+="El Numero no es positivo \n";
 	}
 	if(!aux10){
 		enviar=false;
-		mensaje+="Error del Número de comunidades \n";
+		mensaje+="La Fecha no es valido \n";
 	}
 	if(!aux11){
 		enviar=false;
-		mensaje+="Codigo Banco y Codigo de Oficina tienen un Formato incorrecto \n";
+		mensaje+="Error del Número de comunidades \n";
 	}
 	if(!aux12){
 		enviar=false;
+		mensaje+="Codigo Banco y Codigo de Oficina tienen un Formato incorrecto \n";
+	}
+	if(!aux13){
+		enviar=false;
 		mensaje+="Numero de cuenta no tiene un Formato incorrecto \n";
 	}
-	/* if(!aux13){
+	if(!aux14){
 		enviar=false;
 		mensaje+="Codigo Banco y Codigo de Oficina tienen un Formato incorrecto \n";
-	} */
-	/* if(!aux14){
+	} 
+	if(!aux15){
+		enviar=false;
+		mensaje+="Codigo del Iban no es correcto \n";
+	} 
+	if(!aux12 || !aux13 || !aux14 || !aux14 || !aux15){
+		enviar=false;
+		mensaje+="Los Datos Bancario no son correctos";
+	}
+
+	 if(!aux16){
 		enviar=false;
 		mensaje+="No se ha seleccionado ninguna casilla de verificación \n";
 		mensaje+="o has seleccionado mas casillas\n";
-	} */
-
+	} 
 
 		
 	/* var cifEs=esCif(datoCif);
@@ -228,13 +247,6 @@ function validar(){
 	}	
 
 //-------------------------------------------------------------------------------------------------------------------------------------
-	
-    var calculo=calculoIBANEspanya("21000418401234567891");
-	console.log(comprobarIBAN(calculo));
-
-	var comprobar=comprobarIBAN(calculo);
-	//console.log(comprobarIBAN(calculo));
-	console.log(comprobar);
 	
 	if(!enviar){
 		alert(mensaje);
