@@ -3,21 +3,22 @@ window.onload= inicio;
 /* console.log("aaaaaaa");		
   console.log("bbbbbbb");	 */
 	//Pablo
-	//codEmpresa 1245P
+	//codEmpresa 1234P1245
 	//NIF 40266637P
 	//CIF P8553129B	
-    //ES6621000418401234567891	
+    //ES66 2100 0418 40 1234567891	
 	//630227490
 	//Calle Juan Alonso nº15
 	//Madrid
 	//28047
 	//912345678
-	//codBanco 1234
-	// codOficina 1234
-	//numeroCuenta 1234567890
+	//codBanco 2100
+	// codOficina 0418
+	//numeroCuenta 1234567891
 	//fechaEmpresa 20-04-2020
-	// 12
-	// 12
+	// 100
+	// 5
+	
 function inicio(){
 	document.primero.onsubmit=validar;
 	document.primero.cp.onblur=ponerProvincia;
@@ -79,7 +80,6 @@ function ponerProvincia(){
 		"Ceuta",
 		"Melilla"];
 
-
 		var cp=document.primero.cp.value;
 		var valorcp=parseInt(cp,10);
 		var codigoPro=parseInt(valorcp/1000);
@@ -130,7 +130,6 @@ function validar(){
 
 /* 	var calculo=calculoIBANEspanya("21000418401234567891");
 	var comprobar=comprobarIBAN(calculo); */
-
 
 	if(!aux){
 		enviar=false;
@@ -200,7 +199,7 @@ function validar(){
 	} 
 	if(!aux12 || !aux13 || !aux14 || !aux14 || !aux15){
 		enviar=false;
-		mensaje+="Los Datos Bancario no son correctos";
+		mensaje+="Los Datos Bancario no son correctos \n";
 	}
 
 	 if(!aux16){
@@ -227,23 +226,19 @@ function validar(){
 //---------------------------------------------------------------------------------------------------------------------------------
 	
 	if(nifCIF=="C1"){
-		console.log("Se ha introducido un cif correcto.");
+		mensaje+="Se ha introducido un cif correcto.\n";
 	}
-	//switch
 	else if(nifCIF=="C2"){
-		console.log("Se ha introducido un cif erróneo. El carácter de control es erróneo.");
+		mensaje+="Se ha introducido un cif erróneo. El carácter de control es erróneo.\n";
 	}
 	else if(nifCIF=="N1"){
-		console.log("Se ha introducido un NIF correcto");
+		mensaje+="Se ha introducido un NIF correcto\n";
 	}
 	else if(nifCIF=="N2"){
-		console.log("Se ha introducido un NIF erróneo. El carácter de control es erróneo.");
-	}
-	else if(nifCIF=="N3"){
-		console.log("Se ha introducido un DNI, se ha pasado un número de entre 6 y 8 dígitos con un valor mínimo de 100000");
+		mensaje+="Se ha introducido un NIF/CIF erróneo. El carácter de control es erróneo.\n";
 	}
 	else if(nifCIF==0){
-		console.log("Se ha introducido un dato no válido. No es CIF.");
+		mensaje+="Se ha introducido un dato no válido. No es CIF.\n";
 	}	
 
 //-------------------------------------------------------------------------------------------------------------------------------------

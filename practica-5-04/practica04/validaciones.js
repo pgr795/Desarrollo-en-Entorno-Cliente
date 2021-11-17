@@ -1,139 +1,29 @@
 function esNif (parametro) {
-	var caracterControl = ["T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E"];
-	var letrasControl = ["X","Y","Z","L","K","M"];
-	if(parametro.length == 9){
-		if(esLetra(parametro[0]) && esLetra(parametro[8])){
-			var nums = parametro.substring(1,8);
-			if(letrasControl.includes(parametro[0]) && caracterControl.includes(parametro[8]) && esDigito(nums)){
-				nums = letrasControl.indexOf(parametro[0]) + nums;
-				if(caracterControl[nums%23] == parametro[8]){
-					return 1;
-				}else{
-					return 2;
-				}
-			}
-			return 0;
-		}else if(esLetra(parametro[8])){
-			var nums = parametro.substring(0,8);
-			if(esNumero(nums)){
-				if(caracterControl[nums%23] == parametro[8]){
-					return 1;
-				}else{
-					return 2;
-				}
-			}
-			return 0;
-		}
-		return 0;
-	}else if(parametro.length >= 6  && parametro.length <= 8){
-		if(esNumero(parametro)){
-			if(parametro >= 100000){
-				return 3;
-			}
-			return 0;
-		}
-		return 0;
+	var nif=parametro.trim();
+	var expRegEsnif=/^([0-9]{7}\d)([TRWAGMYFPDXBNJZSQVHLCKE])$/i;
+	var validarEsNif=1;
+	if(!expRegEsnif.test(nif)){
+		validarEsNif=2;
 	}
-	return 0;
+	return validarEsNif;					
 }
 
 //--------------------------------------------------------------------------------------------
 	
 function esCif(cif){
-	var caracterControles=["J","A","B","C","D","E","F","G","H","I"];
-	var longitud=cif.length;
-	var numeros=cif.substring(1,8);
-	var letra=cif.substring(0,1);
-	var ultimaPosicion=cif.substring(8,9).toUpperCase();
-	var validarNumero=true;
-	var validarLetra=true;
-	var numerosPares=0;
-	var numerosImpares=0;
-	var resultado;
-	var resto;
-	var complemento;
-//console.log("aaaaaaaaaa");
-//console.log("bbbbbbbbbb");	
-	if(longitud==9){
-		console.log("aaaaaaaaaa");
-		if(!(esLetra2(letra))){
-			validarLetra=false;
-		}
-		for(var i=0; i < 7; i++){ //8
-			var numero=numeros.charAt(i);
-			console.log(numero);
-			if(esNumero(numero)){
-				validarNumero=false;	
-			}
-		}
-		console.log(validarLetra)
-		console.log(validarNumero)
-		if(validarNumero && validarLetra){
-				for(var i=0; i < 7;i+=2){
-					var numero=parseInt(numeros.charAt(i));
-					var aux=numero*2;
-					console.log(numero);
-					console.log(aux);
-					if(aux > 9){
-						var aux2= aux.toString();
-						for(var i; i < aux2.length; i++){
-							numerosImpares+=parseInt(aux2.charAt(i));
-						}
-					}
-					else{
-					numerosImpares+=aux;
-					}
-				}
-	
-				for(var i=1; i < 7;i+=2){
-					var numero=numeros.charAt(i);
-					numerosPares+=parseInt(numero*2);
-				}
-
-				resultado=numerosPares+numerosImpares;		
-				resto=resultado%10;
-				complemento=10-resto;
-			
-				if(complemento==10){
-				 complemento=0;
-				}
-				
-		//Comprobar la ultima posicion 
-		//Dos formas letra y numero
-		
-				var caracterControl=caracterControles[complemento];
-				var numeroControl=caracterControles.lastIndexOf(caracterControl);
-
-				if(esLetra2(ultimaPosicion)){
-					if(!(caracterControl.includes(caracterControles))){
-						return 1;
-					}
-					else{
-						return 2;
-					}
-
-				}
-				if(!(esNumero(ultimaPosicion))){
-					if(numeroControl==complemento){
-						return 1;
-					}
-					else{
-						return 2;
-					}
-				}
-				else{
-					return 2;
-				}	
-
-		}
-		else{
-			return 2;
-		}	
-	}	
-	else{
-		return 0;
+	var Cif=cif.trim();
+	var expRegEsCif1=/^([A-HJUV])([0-9]{8})$/i;
+	var expRegEsCif2=/^([PQRSW])([0-9]{7})+([JABCDEGHI])$/i;
+	var validarCif=0;
+	if(expRegEsCif1.test(Cif)){
+		validarCif=1;
 	}
+	else if(expRegEsCif2.test(Cif)){
+		validarCif=1;
+	}
+	return validarCif;
 }
+
 
 //--------------------------------------------------------------------------------------------
 
@@ -149,19 +39,16 @@ if(aux==1){
 else if(aux==2){
 	mensaje="C2";
 }
-
-if(mensaje=="C2"){
-	if(aux2==1){
-		mensaje="N1";
-	}	
-	else if(aux2==2){
-		mensaje="N2";
-	}
-	else if(aux2==0){
-		mensaje="N3";
-	}
+else if(aux2==1){
+	mensaje="N1";
+}	
+else if(aux2==2){
+	mensaje="N2";
 }
-return mensaje;
+else if(aux2==0){
+	mensaje=0;
+}
+	return mensaje;
 }
 
 // 	if(aux==1){
@@ -238,12 +125,13 @@ var caracterContro12;
 			caracterContro1=modulo11;
 		}
 	
-	if(numeroDeCuenta.length==10){
-		var aux=[1,2,4,8,5,10,9,7,3,6];
-			for(let i=0; i<numeroDeCuenta.length;i++){
-				var numero3=parseInt(numeroDeCuenta.charAt(i))*aux[i];
-			}
-	}
+		if(numeroDeCuenta.length==10){
+			var aux=[1,2,4,8,5,10,9,7,3,6];
+			var numero3=0;
+				for(let i=0; i<numeroDeCuenta.length;i++){
+					numero3+=parseInt(numeroDeCuenta.charAt(i))*aux[i];
+				}
+		}
 		var resto=numero3%11;
 		var modulo11=11-resto;
 	
@@ -286,41 +174,11 @@ var codigo;
 
 function comprobarIBAN(parametro){
 	var iban=parametro.substring(4,34).trim();
-	var cuatroLetras=parametro.substring(0,4);
-    var ibanValido=true;
-	var longitud=cuatroLetras.length;
-
-	if(parametro.length <=34){
-		var tabla1=new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-		var tabla2=new Array(25);
-	
-		for (let y= 0; y < tabla1.length; y++) {
-			tabla2[y+10]=tabla1[y];
-		}	
+    var ExpRegIban=/^([A-Z]{2})([0-9]{2})([0-9A-Z]{0,31})$/i;
+	var ibanValido=true;
+	if(!ExpRegIban.test(iban)){
+		validarEsNif=false;
 	}
-
-	//Convertir letras a numeros
-	var letrasfinal="";
-	for (let i = 0; i < longitud; i++) {
-		let aux=cuatroLetras.charAt(i);
-		if(esLetra3(aux)){
-			let aux2=String(tabla2.indexOf(aux));
-			letrasfinal+=aux2;
-		}
-		else{
-			letrasfinal+=aux;
-		}
-	}
-	var ibanConvertido=iban+letrasfinal;
-	var resto=parseInt(ibanConvertido)%97;
-
-
-	if(resto==1){
-		ibanValido=true;
-	}
-	else{
-		ibanValido=false;
-	}	
 	return ibanValido;
 }
 
