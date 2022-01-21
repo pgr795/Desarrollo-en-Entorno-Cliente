@@ -134,7 +134,7 @@ function inicio(){
 	
 			if (inexistente){
 				$("#coches > tbody").append("<tr>");
-				let celda=$("tbody > tr");
+				let celda=$("#coches > tbody > tr");
 				celda.append("<td>"+vMarca+"</td>");	
 				celda.append("<td>"+vModelo+"</td>");
 				celda.append("<td>"+vPrecio+"</td>");											
