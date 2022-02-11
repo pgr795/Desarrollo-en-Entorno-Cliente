@@ -40,7 +40,7 @@ function recogerDatos(){
 	}
     fetch("PHP/fichero2.php", configura)
     .then(comienzo2)
-    .catch(errores);
+    .catch(errores2);
 }
 function comienzo(respuesta){
 	if (respuesta.ok)
@@ -71,6 +71,8 @@ function procesamiento2(dato){
     document.getElementById("fondo").value=datos.fondo;
 }
 function errores(){
-	alert("error en la conexión con el servidor");
-	document.getElementById("resultado").textContent="error en la conexión con el servidor"
+	alert("error en la conexión:Marcas()");
+}
+function errores2(){
+	alert("error en la conexión:RecogerDatos()");
 }

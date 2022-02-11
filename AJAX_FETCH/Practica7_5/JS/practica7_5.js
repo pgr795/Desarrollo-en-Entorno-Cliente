@@ -34,8 +34,8 @@ function recogerDatos(){
 		body:cadenaxml
 	}
 	fetch("PHP/fichero.php", estado)
-		.then(procesamiento2)
-		.catch(errores);
+		.then(comienzo2)
+		.catch(errores2);
 }
 function comienzo(respuesta){
 	if (respuesta.ok)
@@ -81,6 +81,9 @@ function procesamiento2(dato){
     document.getElementById("precio").value=precio;
 }   
 function errores(){
-	alert("error en la conexión con el servidor");
-	document.getElementById("resultado").textContent="error en la conexión con el servidor"
+	alert("error en la conexión:Marcas()");
+	
+}
+function errores2(){
+	alert("error en la conexión:RecogerDatos()");
 }
