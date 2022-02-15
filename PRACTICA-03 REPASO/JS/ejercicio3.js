@@ -1,15 +1,19 @@
-
 window.onload=inicio;
-
 function inicio(){
     document.formulario.onsubmit=validar;
-}
+    let a=validar();
+if(a){
+    mensajes()
+    let b=document.cookie;
+    borrarCookie(b);
+} 
 
+}
 function validar(){
     let envio=true;
     let apellidos = document.formulario.apellidos.value;
     let nombre = document.formulario.nombre.value;
-    
+
     let tipoVia = document.formulario.via.value;
     let nombreVia = document.formulario.nombrevia.value;
     let numero = document.formulario.numero.value;
@@ -24,7 +28,7 @@ function validar(){
     let trabajo = document.formulario.trabajo.value;
     let empresa = document.formulario.nombreEmpresa.value;
     let categoriaProfesional = document.formulario.categoriaProfesional.value;
-    
+
     let aux=comprobarApellido(apellidos);
     let aux2=comprobarNombre(nombre);
 
@@ -38,92 +42,31 @@ function validar(){
     let aux9=comprobarLocalidad(localidad);
     let aux10=comprobarCP(cp);
     let aux11=comprobarProvincia(provincia);
-    
+
     let aux12=comprobarPaisEstado(paisEstado);
     let aux13=comprobarTrabajo(trabajo);
     let aux14=comprobarEmpresa(empresa);
     let aux15=comprobarCategoria(categoriaProfesional);
 
-    let aux16=contador();
+    
 
-    if(!aux || !aux2 || !aux3 || !aux4 || !aux5 || !aux6 || !aux7 || !aux8 || !aux9 || !aux10 || !aux11 || !aux12 || !aux13 || !aux14 || !aux15 || !aux16){
+    if(!aux || !aux2 || !aux3 || !aux4 || !aux5 || !aux6 || !aux7 || !aux8 || !aux9 || !aux10 || !aux11 || !aux12 || !aux13 || !aux14 || !aux15 ){
         envio=false;
     }
 
     if(!envio){
 		alert("No se ha enviado el formulario");
+       
 	}
 	else{
 		alert("Se ha enviado el formulario");
 	}
-    alertCookie();
+    
     return envio;
 }
 
 
 
-function contador(){
-    let con = 0;
-    let valido=true;
-  
-    if (document.formulario.musica.checked == true){
-        var valor=document.formulario.musica.value;
-        guardarCookie("aficiones",valor)
-        con++;
-    }
-    if (document.formulario.viajar.checked == true){
-        con++;
-        var valor=document.formulario.viajar.value;
-        guardarCookie("aficiones",valor)
-    }
-    if (document.formulario.leer.checked == true){
-        var valor=document.formulario.leer.value;
-        guardarCookie("aficiones",valor)
-        con++;
-    }
-    if (document.formulario.deporte.checked == true){
-        var valor=document.formulario.deporte.value;
-        guardarCookie("aficiones",valor)
-        con++;
-    }
-    if (document.formulario.fotos.checked == true){
-        var valor=document.formulario.fotos.value;
-        guardarCookie("aficiones",valor)
-        con++;
-    }
-    if (document.formulario.videos.checked == true){
-        var valor=document.formulario.videos.value;
-        guardarCookie("aficiones",valor)
-        con++;
-    }
-    if (document.formulario.cenar.checked == true){
-        var valor=document.formulario.cenar.value;
-        guardarCookie("aficiones",valor)
-        con++;
-    }
-    if (document.formulario.copas.checked == true){
-        var valor=document.formulario.copas.value;
-        guardarCookie("aficiones",valor)
-        con++;
-    }
-  
-    if (con >= 3) {
-        valido=true;
-    }
-    else{
-        valido=false;
-    }
-    return valido;
-}
-
-function guardarCookie(nombre,valor) {
-    document.cookie += " "+nombre+"="+valor;
-    alert(document.cookie); 
-}
-
-function alertCookie() {
-    alert(document.cookie); // visualizar: nombre=oeschger;comida favorita=tripa
-}
 
 function comprobarApellido(apellidos){
     var valido=true
@@ -132,11 +75,11 @@ function comprobarApellido(apellidos){
         var inicio = apellidos.substring(0,1);
         var medio = apellidos.substring(1,apellidos.length-1);
         var fin = apellidos.substring(apellidos.length-1,apellidos.length);
-        
+
         if(!letras(inicio)){
             valido=false;
         }
-        
+
         var cont=0;
         while(cont < medio.length){
             var letra=medio.charAt(cont);
@@ -164,11 +107,11 @@ function comprobarNombre(nombre){
         var inicio = Nombre.substring(0,1);
         var medio = Nombre.substring(1,Nombre.length-1);
         var fin = Nombre.substring(Nombre.length-1,Nombre.length);
-        
+
         if(!letras(inicio)){
             valido=false;
         }
-        
+
         var cont=0;
         while(cont < medio.length){
             var letra=medio.charAt(cont);
@@ -206,11 +149,11 @@ function comprobarNombreVia(nombreVia){
         var inicio = nombrevia.substring(0,1);
         var medio = nombrevia.substring(1,nombrevia.length-1);
         var fin = nombrevia.substring(nombrevia.length-1,nombrevia.length);
-        
+
         if(!letras(inicio)){
             valido=false;
         }
-        
+
         var cont=0;
         while(cont < medio.length){
             var letra=medio.charAt(cont);
@@ -273,7 +216,7 @@ function comprobarPisoPlanta(pisoPlanta){
         var cont=0;
         while(cont < pisoPlanta.length){
             var auxPisoPlanta=pisoPlanta.charAt(cont);
-            if(!Numeros(auxPisoPlanta)){
+            if(!letras(auxPisoPlanta)){
                 valido=false;
                 break;
             }
@@ -312,7 +255,7 @@ function comprobarPuerta(puerta){
         }
         else{
             valido=true;
-        } 
+        }
     }
     else{
         valido=true;
@@ -327,11 +270,11 @@ function comprobarLocalidad(localidad){
         var inicio = localidad.substring(0,1);
         var medio = localidad.substring(1,localidad.length-1);
         var fin = localidad.substring(localidad.length-1,localidad.length);
-        
+
         if(!letras(inicio)){
             valido=false;
         }
-        
+
         var cont=0;
         while(cont < medio.length){
             var letra=medio.charAt(cont);
@@ -354,7 +297,7 @@ function comprobarLocalidad(localidad){
 
 function comprobarCP(cp){
     let valido=true;
-   
+
     var cont=0;
     while(cont < cp.length){
         var numero=cp.charAt(cont);
@@ -375,11 +318,11 @@ function comprobarProvincia(provincia){
         var inicio = provincia.substring(0,1);
         var medio = provincia.substring(1,provincia.length-1);
         var fin = provincia.substring(provincia.length-1,provincia.length);
-        
+
         if(!letras(inicio)){
             valido=false;
         }
-        
+
         var cont=0;
         while(cont < medio.length){
             var letra=medio.charAt(cont);
@@ -407,11 +350,11 @@ function comprobarPaisEstado(paisEstado){
         var inicio = paisestado.substring(0,1);
         var medio = paisestado.substring(1,paisestado.length-1);
         var fin = paisestado.substring(paisestado.length-1,paisestado.length);
-        
+
         if(!letras(inicio)){
             valido=false;
         }
-        
+
         var cont=0;
         while(cont < medio.length){
             var letra=medio.charAt(cont);
@@ -438,11 +381,11 @@ function comprobarTrabajo(trabajo){
         var inicio = Trabajo.substring(0,1);
         var medio = Trabajo.substring(1,Trabajo.length-1);
         var fin = Trabajo.substring(Trabajo.length-1,Trabajo.length);
-        
+
         if(!letras(inicio)){
             valido=false;
         }
-        
+
         var cont=0;
         while(cont < medio.length){
             var letra=medio.charAt(cont);
@@ -469,11 +412,11 @@ function comprobarEmpresa(empresa){
         var inicio = Empresa.substring(0,1);
         var medio = Empresa.substring(1,Empresa.length-1);
         var fin = Empresa.substring(Empresa.length-1,Empresa.length);
-        
+
         if(!letras(inicio)){
             valido=false;
         }
-        
+
         var cont=0;
         while(cont < medio.length){
             var letra=medio.charAt(cont);
@@ -500,11 +443,11 @@ function comprobarCategoria(categoriaProfesional){
         var inicio = CategoriaProfesional.substring(0,1);
         var medio = CategoriaProfesional.substring(1,CategoriaProfesional.length-1);
         var fin = CategoriaProfesional.substring(CategoriaProfesional.length-1,CategoriaProfesional.length);
-        
+
         if(!letras(inicio)){
             valido=false;
         }
-        
+
         var cont=0;
         while(cont < medio.length){
             var letra=medio.charAt(cont);
@@ -522,4 +465,132 @@ function comprobarCategoria(categoriaProfesional){
         valido=false;
     }
     return valido;
+}
+
+function mensajes(){
+    let con=contador();
+    let cookies=document.cookie;
+    let aux=cookies.split("=");
+    aux.pop();
+    let indice=0;
+ 
+    if(con){
+        while (indice < aux.length) {
+            let padre=document.getElementById("mensaje");
+            let elementoNuevo=document.createElement("p");
+            let textoNuevo=document.createTextNode(aux[indice]);
+            switch (aux[indice]) {
+                case "Escuchar Musica":
+                    elementoNuevo.append(textoNuevo);
+                    padre.append(elementoNuevo);
+                    indice++;
+                    break;
+                case "Viajar":
+                    elementoNuevo.append(textoNuevo);
+                    padre.append(elementoNuevo);
+                    indice++;
+                    break;
+                case "Leer":
+                    elementoNuevo.append(textoNuevo);
+                    padre.append(elementoNuevo);
+                    indice++;
+                    break;
+                case "Hacer Deporte":
+                    elementoNuevo.append(textoNuevo);
+                    padre.append(elementoNuevo);
+                    indice++;
+                    break;
+                case "Hacer Fotos":
+                    elementoNuevo.append(textoNuevo);
+                    padre.append(elementoNuevo);
+                    indice++;
+                    break;
+                case "Grabar videos":
+                    elementoNuevo.append(textoNuevo);
+                    padre.append(elementoNuevo);
+                    indice++;
+                    break;
+                case "Salir a Cenar":
+                    elementoNuevo.append(textoNuevo);
+                    padre.append(elementoNuevo);
+                    indice++;
+                    break;
+                case "Salir de Copas":
+                    elementoNuevo.append(textoNuevo);
+                    padre.append(elementoNuevo);
+                    indice++;
+                    break;
+            } 
+        }
+        alertCookie(); 
+    }
+    else{
+        borrarCookie(cookies);
+    }
+}
+
+function contador(){
+    let con = 0;
+    let valido=true;
+   
+    if (document.formulario.musica.checked == true){
+        var valor=document.formulario.musica.value;
+        guardarCookie(valor);
+        con++;
+    }
+    if (document.formulario.viajar.checked == true){
+        con++;
+        var valor=document.formulario.viajar.value;
+        guardarCookie(valor);
+    }
+    if (document.formulario.leer.checked == true){
+        var valor=document.formulario.leer.value;
+        guardarCookie(valor);
+        con++;
+    }
+    if (document.formulario.deporte.checked == true){
+        var valor=document.formulario.deporte.value;
+        guardarCookie(valor);
+        con++;
+    }
+    if (document.formulario.fotos.checked == true){
+        var valor=document.formulario.fotos.value;
+        guardarCookie(valor);
+        con++;
+    }
+    if (document.formulario.videos.checked == true){
+        var valor=document.formulario.videos.value;
+        guardarCookie(valor);
+        con++;
+    }
+    if (document.formulario.cenar.checked == true){
+        var valor=document.formulario.cenar.value;
+        guardarCookie(valor);
+        con++;
+    }
+    if (document.formulario.copas.checked == true){
+        var valor=document.formulario.copas.value;
+        guardarCookie(valor);
+        con++;
+    }
+
+    if (con == 3) {
+        valido=true;
+    }
+    else{
+        valido=false;
+    }
+    return valido;
+}
+
+function guardarCookie(valor) {
+    document.cookie += valor+"=;expires=Thu, 01 Jan 2030 00:00:00 GMT";
+}
+
+function borrarCookie(valor){
+    document.cookie=valor+"=;expires=Thu, 01 Jan 1974 00:00:00 GMT";
+}
+
+function alertCookie() {
+    alert(document.cookie); // visualizar: nombre=oeschger;comida favorita=tripa
 }
