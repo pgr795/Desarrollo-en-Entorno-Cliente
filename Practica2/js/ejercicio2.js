@@ -16,6 +16,9 @@ function validar() {
 		mensaje="ErrorNombre";
         document.formulario.errNombre.value = mensaje;   
 	}
+    else{
+        document.formulario.errNombre.value = ""; 
+    }
 
     let apellido = document.formulario.apellido.value;
     let expRegApellido=/^[A-Za-z]{5}[A-Za-z -]{1,28}[A-Za-z]{3}$/i;
@@ -25,14 +28,20 @@ function validar() {
 		mensaje="ErrorApellido";
         document.formulario.errApellido.value = mensaje; 
     }
+    else{
+        document.formulario.errApellido.value = ""; 
+    }
 
     let nif = document.formulario.nif.value.trim();
     let expRegNif=/^[0-9XYZKLM][0-9]{2,7}[TRWAGMYFPDXBNJZSQVHLCKE]$/;
 
     if (!expRegNif.test(nif)) {
          envio = false;
-         mensaje = "Error validacion Nif"
+         mensaje = "Error validacion Nif";
          document.formulario.errNif.value = mensaje; 
+    }
+    else{
+        document.formulario.errNif.value = ""; 
     }
 
     let nacimiento = document.formulario.nacimiento.value.trim();
@@ -40,8 +49,11 @@ function validar() {
 
     if (!expRegNacimiento.test(nacimiento)) {
         envio = false;
-        mensaje += "Error validacion Nacimiento \n"
-        document.formulario.errNif.value = mensaje; 
+        mensaje = "Error validacion Nacimiento";
+        document.formulario.errNacimiento.value = mensaje; 
+    }
+    else{
+        document.formulario.errNacimiento.value = ""; 
     }
   
 
@@ -50,110 +62,147 @@ function validar() {
 
     if (!expRegTipoVia.test(tipoVia)) {
         envio = false;
-        mensaje += "Error validacion tipoVia \n"
-        document.formulario.errNif.value = mensaje; 
+        mensaje = "Error validacion tipoVia";
+        document.formulario.errTipoVia.value = mensaje; 
+    }
+    else{
+        document.formulario.errTipoVia.value = ""; 
     }
 
+    let denominacionVia = document.formulario.denominacionVia.value.trim();
+    let expRegdenominacionVia=/^[a-z][a-z \-ºª]{2,11}[a-z]$/i;
+
+    if (! expRegdenominacionVia.test(denominacionVia)) {
+        envio = false;
+        mensaje += "Error validacion DenominacionVia";
+        document.formulario.errcDenominacionVia.value = mensaje; 
+    }
+    else{
+        document.formulario.errcDenominacionVia.value = ""; 
+    }
 
     let Vnumero = document.formulario.numero.value.trim();
-    let expRegNumeros=/^[0-9]{3}$/;
+    let expRegNumeros=/^[0-9]{1,3}$/; //(0?0?[1-9])|(0?[1-9]\d)|([1-9]\d{2})
 
     if (!expRegNumeros.test(Vnumero)) {
         envio = false;
-        mensaje += "Error validacion numeros \n"
-        document.formulario.errNif.value = mensaje; 
+        mensaje = "Error validacion numeros";
+        document.formulario.errNumero.value = mensaje; 
+    }
+    else{
+        document.formulario.errNumero.value = ""; 
     }
 
 
-    // let vemail = document.formulario.email.value.trim();
-    // let expRegEmail;
+    let vemail = document.formulario.email.value.trim();
+    let expRegEmail=/^[a-z][0-9a-z\-_]+[a-z0-9]@((gmail)|(hotmail)|([a-z]+))\.((com)|(es))$/i;
 
-    // if (!expRegEmail.test(vemail)) {
-    //     envio = false;
-    //     mensaje += "Error validacion email \n"
-    // }
-    // else {
-    //     document.formulario.nacimiento.value = "";
-    // }
+    if (!expRegEmail.test(vemail)) {
+        envio = false;
+        mensaje = "Error validacion email";
+        document.formulario.errEmail.value = mensaje; 
+    }
+    else{
+        document.formulario.errEmail.value = ""; 
+    }
+   
 
-    // let web = document.formulario.web.value.trim();
-    // let expRegWeb;
-    // if (!expRegWeb.test(web)) {
-    //     envio = false;
-    //     mensaje += "Error validacion web \n"
-    // }
-    // else {
-    //     document.formulario.nacimiento.value = "";
-    // }
+    let web = document.formulario.web.value.trim();
+    let expRegWeb=/((http:\/\/)|(https:\/\/))?(www\.)?([a-z][a-z0-9\-_ ]+[0-9a-z]\.)+[a-z]{2,4}((\/[a-z][a-z-0-9 _\-]+[a-z0-9])+)(\.(html)|(php)|(htm)|(asp))?/i;
+    if (!expRegWeb.test(web)) {
+        envio = false;
+        mensaje = "Error validacion web";
+        document.formulario.errWeb.value = mensaje; 
+    }
+    else{
+        document.formulario.errWeb.value = ""; 
+    }
 
-    // let estadoCivil = document.formulario.civil.value.trim();
-    // let expRegEstadoCivil;
-    // if (!expRegEstadoCivil.test(estadoCivil)) {
-    //     envio = false;
-    //     mensaje += "Error validacion web \n"
-    // }
-    // else {
-    //     document.formulario.nacimiento.value = "";
-    // }
+    let estadoCivil = document.formulario.civil.value;
+    
+    if(estadoCivil==""){
+        envio=false;
+        mensaje = "Error EstadoCivil";
+        document.formulario.errEstadoCivil.value = mensaje; 
+    }
+    else{
+        document.formulario.errEstadoCivil.value = ""; 
+    }
 
-    // let sectores = document.formulario.sectores.value.trim();
-    // let expRegSectores;
-    // if (!expRegSectores.test(sectores)) {
-    //     envio = false;
-    //     mensaje += "Error validacion web \n"
-    // }
-    // else {
-    //     document.formulario.nacimiento.value = "";
-    // }
+    //En caso que no funciones recorrer con un array
 
-    // let paises = document.formulario.paises.value.trim();
-    // let expRegPaises;
-    // if (!expRegPaises.test(paises)) {
-    //     envio = false;
-    //     mensaje += "Error validacion web \n"
-    // }
-    // else {
-    //     document.formulario.nacimiento.value = "";
-    // }
+    //Recorrer un array
+    
+    let paises=contadorPaises();
+    if(paises==false){
+        envio=false;
+        mensaje = "Error Paises";
+        document.formulario.errPaises.value = mensaje; 
+    }
+    else{
+        document.formulario.errPaises.value = ""; 
+    }
 
-    let sectores=contador();
+
+    let sectores=contadorSectores();
     if(sectores==false){
         envio=false;
-        mensaje = "Error sectores \n"
+        mensaje = "Error sectores";
         document.formulario.errSectores.value = mensaje; 
+    }
+    else{
+        document.formulario.errSectores.value = ""; 
     }
   
     return envio;
 
 }
 
-function contador(){
+function contadorSectores(){
     let con = 0;
     let valido=true;
    
-    if (document.formulario.Soltero.checked == true){
+    if (document.formulario.Hosteleria.checked){
         con++;
     }
-    if (document.formulario.Casado.checked == true){
+    if (document.formulario.Industria.checked){
         con++;
     } 
-    if (document.formulario.Separado.checked == true){
+    if (document.formulario.Comercio.checked){
         con++;
     }
-    if (document.formulario.Divorciado.checked == true){
+    if (document.formulario.Agricultura.checked){
         con++;
     }
-    if (document.formulario.Viudo.checked == true){
+    if (document.formulario.Ganaderia.checked){
         con++;
     }
-    if (document.formulario.Pareja.checked == true){
+    if (document.formulario.Comunicaciones.checked){
         con++;
     }
-    if (document.formulario.Otros.checked == true){
+    if (document.formulario.Informatica.checked){
         con++;
     }
 
     if (con >= 3) {
+        valido=true;
+    }
+    else{
+        valido=false;
+    }
+    return valido;
+}
+
+function contadorPaises(){
+    let paises = document.formulario.paises;
+    let longitud=paises.length;
+    let cont=0;
+    for($i=0;$i<longitud;$i++){
+        if(document.formulario.paises.selected){
+            cont++;
+        }
+    }
+    if (cont >= 2) {
         valido=true;
     }
     else{
