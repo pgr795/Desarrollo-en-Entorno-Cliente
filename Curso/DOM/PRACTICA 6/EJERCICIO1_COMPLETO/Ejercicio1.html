@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<title>Ejercicio1 </title>
+		<meta charset="utf-8" />
+		<meta name="author" content="tu nombre" />
+		<link href="./CSS/ejercicio1.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="JS/ejercicio1.js" ></script>
+	</head>
+	<body>
+		<header>
+		</header>
+		<nav>		
+		</nav>
+		<main>
+			<section>
+				<article>
+					<div>
+						<h1 name="nomUsuario" id="nomUsuario">Usuario</h1>
+						<input type="button" name="Registrar" value="Registrarse" id="registrar"></input>
+						<input type="button" name="Entrar" value="Entrar" id="entrar"></input>			
+				</article>
+				<article>
+					<div>
+						<form name="Localidades">
+							<div>
+								<h1>Localidades</h1>
+								<label for="Localidad">Localidad</label>
+								<input type="text" name="localidad" id="localidad"/><br>
+								<input type="button" name="anyadir" id="anyadir" value="Añadir Localidad"/> 
+								<ul id="local">
+
+								</ul>
+							</div>
+						</form>
+					</div>
+				</article>
+				<article>
+					<div>
+						<form name="formulario">
+							<div>
+								<h1>Definiciones</h1>
+								<label for="Palabra">Palabra</label>
+								<input type="text" name="palabra" id="palabra"/><br>
+								<label for="Concepto">Concepto</label>
+								<input type="text" name="concepto" id="concepto"/><br>
+								<input type="button" name="anyadirDefinicion" id="anyadirDefinicion" value="Añadir Definicion"/> 
+								<dl id="definicion">
+								</dl>
+							</div>
+						</form>
+					</div>
+				</article>
+				<article>
+					<div>
+						<form name="formulario">
+							<div>
+								<h1>Listado de Coches</h1>
+								<label for="Marca">Marca</label>
+								<input type="text" name="marca" id="marca"/><br>
+								<label for="Modelo">Modelo</label>
+								<input type="text" name="modelo" id="modelo"/><br>
+								<label for="Precio">Precio</label>
+								<input type="text" name="precio" id="precio"/><br>
+								<input type="button" name="anyadir_coche" id="anyadir_coche" value="Añadir Coche"/> 
+								<table id="coches" border="1px">
+									<thead>
+										<tr><th>Marca</th><th>Modelo</th><th>Precio</th></tr>
+									</thead>
+									<tbody>
+									</tbody>
+									<tfoot>
+									</tfoot>
+								</table>
+							</div>
+						</form>
+					</div>
+				</article>
+				<article>
+					<div>
+						<h1>Comunidades Autónomas</h1>
+								<select id="comunidades">
+									<option value="Andalucia">Andalucía</option>
+									<option value="Aragon">Aragón</option>
+									<option value="Asturias">Asturias</option>
+									<option value="IslasBaleares">Islas Baleares</option>
+									<option value="PaisVasco">País Vasco</option>
+									<option value="Canarias">Canarias</option>
+									<option value="Cantabria">Cantabria</option>
+									<option value="CastillaLaMancha">Castilla-La Mancha</option>
+									<option value="CastillayLeon">Castilla y León</option>
+									<option value="Cataluña">Cataluña</option>
+									<option value="Extremadura">Extremadura</option>
+									<option value="Galicia">Galicia</option>
+									<option value="Madrid">Comunidad de Madrid</option>
+									<option value="Murcia">Murcia</option>
+									<option value="Navarra">Navarra</option>
+									<option value="LaRioja">La Rioja</option>
+									<option value="ComunidadValenciana">Comunidad Valenciana</option>
+									<option value="Ceuta">Ceuta</option>
+									<option value="Melilla">Melilla</option>
+								</select>
+							</div>
+							<div>
+								<p id="mensajeComunidad"></p>
+								<label>Provincia:</label>
+								<select id="provincia">
+
+								</select>
+							</div>
+						</form>
+					</div>
+				</article>
+				<article>
+					<div>
+						<dialog id="formRegistro">
+							<div>                                      
+								<label for="Usuario">Usuario</label>
+								<input type="text" name="usuario" id="usuario"/><br>
+								<label for="contrasena">Contraseña</label>
+								<input type="text" name="contrasena" id="contrasena"/><br>
+								<input type="button" name="aceptar" value="Aceptar" id="aceptar"></input>
+								<input type="button" name="cancelar" value="Cancelar" id="cancelar"></input>	
+							</div>
+						</dialog>
+						<dialog id="formEntrar">
+								<div>
+									<label for="Nombre">Nombre</label>
+									<input type="text" name="usuario2" id="usuario2"/><br>
+									<label for="contrasena">Contraseña</label>
+									<input type="text" name="contrasena2" id="contrasena2"/><br>
+									<input type="button" name="aceptar" value="Aceptar" id="aceptar2"></input>
+								<input type="button" name="cancelar" value="Cancelar" id="cancelar2"></input>	
+								</div>
+						</dialog>
+						<dialog id="dialogMensaje">
+							<h2>Mensaje</h2>
+							<form id="formMensaje">
+								<p>Titulo: <input type="text" id="titulo"></p>
+								<p>Comentario: <input type="text" id="comentario"></p>
+								Seleccione una imagen:
+								<div>
+									<p><input type="radio" name="foto" value="./imagenes/uno.jpg"><img src="./imagenes/uno.jpg"></p>
+									<p><input type="radio" name="foto" value="./imagenes/dos.jpg"><img src="./imagenes/dos.jpg"></p>
+									<p><input type="radio" name="foto" value="./imagenes/tres.jpg"><img src="./imagenes/tres.jpg"></p>
+									<p><input type="radio" name="foto" value="./imagenes/cuatro.jpg"><img src="./imagenes/cuatro.jpg"></p>
+								</div>
+								<p>
+									<input type="button" id="aceptarCuadro" value="Aceptar">
+									<input type="button" id="cancelarCuadro" value="Cancelar">
+								</p>
+							</form>
+						</dialog>
+					</div>
+					<div id="mensajes">
+						<h2>Mensajes</h2>
+						<div id="contenedor">
+
+						</div>
+						<p><input type="button" id="anadirMensaje" value="Añadir mensaje"></p>
+					</div>
+				</article>
+			</section>
+		</main>
+		<footer>
+		</footer>
+		<aside>
+		</aside>
+	</body>
+</html>
