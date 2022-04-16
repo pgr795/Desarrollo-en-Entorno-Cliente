@@ -1,0 +1,27 @@
+<ol>
+	<li>Juan</li>
+	<li>María</li>
+	<li>Lucas</li>
+	<li>Rosa</li>
+	<li>Pedro</li>
+	<li>Julia</li>
+</ol>
+<script>
+let padre =document.querySelector("ol");
+let nuevo=document.createElement("li");
+let texto=document.createTextNode("Amalia");
+let valores=padre.querySelectorAll("li");
+
+nuevo.appendChild(texto);
+padre.insertBefore(nuevo,valores.item(3));
+</script>
+
+<ol>
+	<li>Juan</li>
+	<li>María</li>
+	<li>Lucas</li>
+	<li>Amalia</li>
+	<li>Rosa</li>
+	<li>Pedro</li>
+	<li>Julia</li
+</ol>
