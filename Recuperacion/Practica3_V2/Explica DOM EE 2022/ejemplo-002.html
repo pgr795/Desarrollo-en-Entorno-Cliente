@@ -1,0 +1,53 @@
+<ol id="milista">
+</ol>
+<script type="text/javascript">
+if (document.addEventListener)
+	window.addEventListener("load",inicio)
+else if (document.attachEvent)
+	window.attachEvent("onload",inicio);
+	
+function inicio(){
+	let boton=document.getElementById("anyadir");
+	if (document.addEventListener)
+		boton.addEventListener("click",nuevos)
+	else if (document.attachEvent)
+		boton.attachEvent("onclick",nuevos);
+}
+
+function nuevos(){
+	let lista=document.getElementById("milista");
+	let hijos=lista.getElementsByTagName("li");
+	----
+	
+	if (hijos.length==10){
+		let boton=document.getElementById("anyadir");
+		if (document.removeEventListener)
+			boton.removeEventListener("click",nuevos)
+		else if (document.datachEvent)
+			boton.datachEvent("onclick",nuevos);
+		if (document.addEventListener)
+			boton.addEventListener("click",borrar)
+		else if (document.attachEvent)
+			boton.attachEvent("onclick",borrar);
+	}
+}
+
+function borrar(){
+	let lista=document.getElementById("milista");
+	let hijos=lista.getElementsByTagName("li");
+	----
+	
+	if (hijos.length==0){
+		let boton=document.getElementById("anyadir");
+		if (document.removeEventListener)
+			boton.removeEventListener("click",borrar)
+		else if (document.datachEvent)
+			boton.datachEvent("onclick",borrar);
+		if (document.addEventListener)
+			boton.addEventListener("click",nuevos)
+		else if (document.attachEvent)
+			boton.attachEvent("onclick",nuevos);
+	}
+}
+
+</script>
