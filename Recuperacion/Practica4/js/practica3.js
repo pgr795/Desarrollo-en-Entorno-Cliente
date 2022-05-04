@@ -12,24 +12,60 @@ function agregar() {
     borrarError();
     //comprobaremos que el código es un número
     let codigo=$("#Codigo").val();
-    let nombre=$("#Nombre").val();
+    let nombre=$("#Nombre").val().toLowerCase();
     
     if(codigo!="" && nombre!=""){
-        let codigoValido=false;
-        let nombreValido=false;
-        if($.isNumeric(codigo)) {
-            codigoValido=true;
+        let codigoValido=true;
+        let nombreValido=true;
+        let cont = 0;
+    
+        //codigo son numeros
+        while (codigoValido && cont < codigo.length) {
+            if (codigo.charAt(cont) < "0" || codigo.charAt(cont) > "9") {
+                codigoValido=false;
+            }
+            cont++;
         }
        
+        cont = 0;
         //nombre es una cadena de caracteres
-        if(!$.isNumeric(nombre)) {
-            nombreValido=true;
+        while (nombreValido && cont < nombre.length) {
+            if (nombre.charAt(cont) < "a" || nombre.charAt(cont) > "z") {
+                nombreValido=false;
+            }
+            cont++;
         }
+
         if(codigoValido && nombreValido){
-            $("#tabla>tbody").prepend("<tr><td>"+codigo+"</td><td>"+nombre+"</td></tr>");
+
+            let lineas=$("#tabla>tbody>tr");
+            let longitud=lineas.length;
+            let validar=true;
+            let cont2=0;
+
+            while(validar && cont2<longitud){
+                let linea=$(lineas).eq(cont2);
+                let celdas=$(linea).children();
+                if(codigo!=celdas.eq(0).text()){
+                    if(codigo < celdas.eq(0).text()){
+                        validar=false;
+                        $("#tabla>tbody").append("<tr><td>"+codigo+"</td><td>"+nombre+"</td></tr>");
+                    }
+                }
+                else if(codigo==celdas.eq(0).text()){
+                    validar=false;
+                }
+                cont2++;
+            }
+
+            if(validar){
+                $("#tabla>tbody").prepend("<tr><td>"+codigo+"</td><td>"+nombre+"</td></tr>");
+            }
+
+
         }
         else{
-            $("#error").val("ERROR:codigoNombre y nombreValido no son validos");
+            $("#error").val("ERROR:codigo se ha repetido");
         }
         //añadiremos esos valores a una tabla
     }
