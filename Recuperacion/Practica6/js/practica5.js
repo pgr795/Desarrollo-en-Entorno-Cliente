@@ -12,6 +12,7 @@ function inicio() {
 }
 
 let conexion;
+
 function comprobarNumero(numeroValido,numero){
     let cont=0;
     while (numeroValido && cont < numero.length) {
@@ -22,6 +23,7 @@ function comprobarNumero(numeroValido,numero){
     }
     return numeroValido;
 }
+
 function recogerValores(){
     let vnumero1=document.getElementById("caja1").value;
     let vnumero2=document.getElementById("caja2").value;
@@ -56,7 +58,6 @@ function recogerValores(){
                 headers:{"Content-Type":"application/json"},
                 body:datosJSON
             }
-
             fetch("php/005.php",configuracion)
                 .then(correcto)
                 .catch(errores);
@@ -65,7 +66,6 @@ function recogerValores(){
              document.getElementById("error").value="datos mal puestos";
         }
     }
-
     else{
         document.getElementById("error").value="esta vacio";
     } 
