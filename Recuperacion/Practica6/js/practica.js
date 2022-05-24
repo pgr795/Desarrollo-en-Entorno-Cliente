@@ -14,6 +14,7 @@ function inicio() {
 let conexion;
 
 function recogerValores(){
+    BorrarCampoError();
     let vautor=document.getElementById("autor").value;
     let configuracion={method:"GET"};
     fetch("php/001.php?autor="+vautor,configuracion)
@@ -33,4 +34,8 @@ function error(){
 
 function procesar(valor){
     document.getElementById("Libro").value=valor;
+}
+
+function BorrarCampoError(){
+    document.getElementById("error").value="";
 }

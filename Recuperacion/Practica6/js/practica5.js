@@ -23,8 +23,8 @@ function comprobarNumero(numeroValido,numero){
     }
     return numeroValido;
 }
-
 function recogerValores(){
+    BorrarCampoError();
     let vnumero1=document.getElementById("caja1").value;
     let vnumero2=document.getElementById("caja2").value;
     let vnumero3=document.getElementById("caja3").value; 
@@ -84,4 +84,7 @@ function procesar(valor) {
         let y=respuesta.y;
         document.getElementById("solucion1").value=x;
         document.getElementById("solucion2").value=y;    
+}
+function BorrarCampoError(){
+    document.getElementById("error").value="";
 }

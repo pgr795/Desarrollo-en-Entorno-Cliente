@@ -85,8 +85,9 @@ function borrarProvincias() {
     let provincias = document.getElementById("region");
     let longitud = provincias.length
     if (longitud != 0) {
-            for (let i = 0; i < longitud; i++) {
-                    provincias.item(0).remove();
-            }
+        for (let i = provincias.length-1; i >=0; i--){
+            provincias.item(0).remove();
+        }
     }
 }
+

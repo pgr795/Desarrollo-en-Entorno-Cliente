@@ -14,6 +14,7 @@ function inicio() {
 let conexion;
 
 function recogerValores(){
+    BorrarCampoError();
     let vCaras=document.getElementById("caras").value;
     let vVertices=document.getElementById("vertices").value; 
     if(vCaras!="" && vVertices!=""){
@@ -69,4 +70,8 @@ function error() {
 
 function procesar(valor) {
     document.getElementById("aristas").value=valor;
+}
+
+function BorrarCampoError(){
+    document.getElementById("error").value="";
 }
