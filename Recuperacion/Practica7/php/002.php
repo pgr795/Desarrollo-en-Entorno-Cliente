@@ -1,8 +1,8 @@
 <?php
 //Obtener el valor de los parámetros
  
-    $caras=$_POST['caras'];
-    $vertices=$_POST['vertices'];
+    $caras=$_REQUEST['caras'];
+    $vertices=$_REQUEST['vertices'];
     $aristas=$caras+$vertices-2;
 
     $respuesta=$aristas;

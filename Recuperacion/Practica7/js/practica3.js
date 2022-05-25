@@ -1,22 +1,13 @@
-if(document.addEventListener)
-    window.addEventListener("load",inicio)
-else if(document.attachEvent)
-    window.attachEvent("onload",inicio);
+$(window).on("load",inicio)
 
 function inicio() {
-    let calculo=document.getElementById("calculo");
-    if(document.addEventListener)
-        calculo.addEventListener("click",recogerValores)
-    else if (document.attachEvent)
-		calculo.attachEvent("onclick",recogerValores);
+    $("#calculo").on("click",recogerValores);
 }
-
-let conexion;
 
 function recogerValores(){
     BorrarCampoError();
-    let vCaras=document.getElementById("caras").value;
-    let vVertices=document.getElementById("vertices").value; 
+    let vCaras=$("#caras").val();
+    let vVertices=$("#vertices").val();
     if(vCaras!="" && vVertices!=""){
         let carasValido=true;
         let verticesValido=true;
@@ -46,32 +37,32 @@ function recogerValores(){
             objetoData.append("vertices",vVertices);
 
             let configuracion={
+                url:"php/003.php",
+                data:objetoData,
                 method:"POST",
-                body:objetoData
+                success:respuestaCorrecta,
+                error:respuestaError,
+                contentType:false,
+                processData:false
             }
-            fetch("php/003.php",configuracion)
-            .then(correcto)
-            .catch(error);
+            $.ajax(configuracion);
         }
         else{
-             document.getElementById("error").value="datos mal puestos";
+            $("#error").val("Datos mal puestos"); 
         }
     }
     else{
-        document.getElementById("error").value="esta vacio";
+        $("#error").val("Esta vacio"); 
     } 
 }
-function correcto(respuesta){
-    if(respuesta.ok)
-    respuesta.text().then(procesar);
+function respuestaCorrecta(valor){
+    $("#aristas").val(valor);
 }
-function error(){
+function respuestaError(){
     alert("Error en la conexion con el servidor");
-    document.getElementById("error").value="Error en la conexion con el servidor";
+    $("#error").val("Error en la conexion con el servidor"); 
 }
-function procesar(valor){
-    document.getElementById("aristas").value=valor;
-}
+
 function BorrarCampoError(){
-    document.getElementById("error").value="";
+    $("#error").val(""); 
 }
