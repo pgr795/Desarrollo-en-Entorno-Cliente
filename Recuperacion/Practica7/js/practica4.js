@@ -6,14 +6,14 @@ function inicio() {
 
 function recogerValores(){
     borrarProvincias();
-    let vpais=$("#pais").val();
+    let vpais=$("#pais option:selected");
     let cadenaXML;
     let cadenaXML1="<continente><paises>";
     let cadenaXML2="";
     let cadenaXML3="</paises></continente>"; 
     
     for (let i = 0; i < $(vpais).length; i++) {
-        let pais=$(vpais).eq(i).text();
+        let pais=$(vpais).eq(i).val();
         cadenaXML2+="<pais>"+pais+"</pais>";
     }
     cadenaXML=cadenaXML1+cadenaXML2+cadenaXML3;
@@ -33,46 +33,35 @@ function recogerValores(){
 }
 
 function respuestaCorrecta(valor){
-
             let respuesta=valor;
-            let vRegiones=respuesta.getElementsByTagName("pais");
-            let regiones=document.getElementById("region");
-            let options=regiones.getElementsByTagName("option");
-              
-            
+            let vRegiones=$(respuesta).find("pais");
+       
             for (let i = 0; i < vRegiones.length; i++) {
                     // proceso de añadir ordenado.
-                    let valorRegion=vRegiones.item(i).textContent;
-                    let longitud = options.length;
+                    let regiones=$("#region");
+                    let options=$(regiones).find("option");
+                    let valorRegion=$(vRegiones).eq(i).text();
+                    let longitud = $("#region").find("option").length;
                     let cont= 0;
                     let valido = true;
                     while (valido && cont < longitud) {
-                            if (valorRegion < options.item(cont).textContent) {
+                        let valorRegion=$(vRegiones).eq(i).text();
+                            if (valorRegion < $(options).eq(cont).val()) {
                                     valido = false;
-                                    let nuevaOptions = document.createElement("option");
-                                    let texto = document.createTextNode(valorRegion);
-                                    nuevaOptions.appendChild(texto);
-                                    regiones.insertBefore(nuevaOptions, options.item(cont));
+                                    $(options).eq(cont).before("<option>"+valorRegion+"</option>");
                             }
                             cont++;
                     }
                     if (valido) {
-                            let nuevaOptions = document.createElement("option");
-                            let texto=document.createTextNode(valorRegion);
-                            nuevaOptions.appendChild(texto);
-                            regiones.append(nuevaOptions);
-                    }
+                        let nuevaOptions = $("<option>"+valorRegion+"</option>");
+                        $(regiones).append(nuevaOptions);
+                }
             }
-
 }
 
-function errores(){
+function respuestaError(){
     alert("Error en la conexion con el servidor");
-    document.getElementById("error").value="Error en la conexion con el servidor";
-}
-
-function procesar(valor){
-         
+    $("#error").val("Error en la conexion con el servidor"); 
 }
 
 function borrarProvincias() {
