@@ -57,6 +57,7 @@ function recogerValores(){
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
                 body:datosJSON
+		//Cache
             }
             fetch("php/005.php",configuracion)
                 .then(correcto)
