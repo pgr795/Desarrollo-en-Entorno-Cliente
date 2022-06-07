@@ -285,7 +285,7 @@ function precio(Precio) {
 
 
 function empresa(Empresa) {
-  let expRegEmpresa=/^([A-Za-z]{3})([A-Za-z0-9\ \.]{7,24})([A-Za-z]|[0-9]){1}$/;
+  let expRegEmpresa=/^([A-Za-z]{3})([A-Za-z0-9 \.]{7,24})([A-Za-z]|[0-9]){1}$/;
   let valido=true;
   if(!expRegEmpresa.test(Empresa)){
     valido=false;
@@ -301,7 +301,7 @@ function codempre(Codempre) {
   return valido;
 }
 function direccion(Direccion) {
-  let expRegDireccion=/^([A-Za-z]{2})([A-Za-z0-9\.\,\º\ª\\\-]{8,26})([A-Za-z0-9\.])$/i;
+  let expRegDireccion=/^([A-Za-z]{2})([A-Za-z0-9,ºª\.\\\-]{8,26})([A-Za-z0-9\.])$/i;
   let valido=true;
   if(!expRegDireccion.test(Direccion)){
     valido=false;
@@ -327,7 +327,7 @@ function minuni(Minuni) {
   return valido;
 }
 function unidades(Unidades) {
-  let expRegUnidades=new RegExp("^([1-9]{1})([0-9]){1,}$","i");
+  let expRegUnidades=new RegExp("^([1-9]{1})([0-9]){2,7}$","i");
   let valido=true;
   if(!expRegUnidades.test(Unidades)){
     valido=false;
