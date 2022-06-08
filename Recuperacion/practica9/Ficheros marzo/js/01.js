@@ -142,7 +142,7 @@ function Codigoexpor(aux) {
     let cont=0;   
     let posIntg=aux.indexOf("?");
     let posGuion=aux.indexOf("-");
-   if (aux.length > 0) {
+   if (aux.length != 0) {
      if (posIntg >0 || posGuion >0) {
        let inicio = aux.substring(0, posIntg);
        let medio = aux.substring(posIntg, posIntg + 3);
@@ -225,7 +225,7 @@ function Nombre(aux) {
     let final=aux.substring(aux.length-1,aux.length); 
     let caracterEspecial=("#");
     let caracteresEspeciales=("-. "); 
-    if (aux.length > 0) {
+    if (aux.length != 0) {
         while(valido && cont<inicio.length){
             if (inicio.charAt(cont) < "a" || inicio.charAt(cont) > "z") {
             if (inicio.charAt(cont) < "0" || inicio.charAt(cont) > "9") {
@@ -257,7 +257,6 @@ function Nombre(aux) {
             valido = false;
             }
         }
-
         return valido;
     }
     else{
@@ -266,15 +265,20 @@ function Nombre(aux) {
     }
 }
 function Unidades(aux) {
-    let valido=true;
-    let cont=0;
+  let valido = true;
+  let cont = 0;
+  if (aux.length != 0) {
     while (valido && cont < aux.length) {
-        if (aux.charAt(cont) < "0" || aux.charAt(cont) > "9") {
-            valido=false;
-        }
-        cont++;
+      if (aux.charAt(cont) < "0" || aux.charAt(cont) > "9") {
+        valido = false;
+      }
+      cont++;
     }
-    return valido;
+  }
+  else{
+      valido=false;
+  }
+  return valido;
 }
 
 
