@@ -143,41 +143,45 @@ function Codigoexpor(aux) {
     let posIntg=aux.indexOf("?");
     let posGuion=aux.indexOf("-");
    if (aux.length > 0) {
-     if (posIntg != null) {
+     if (posIntg >0 || posGuion >0) {
        let inicio = aux.substring(0, posIntg);
        let medio = aux.substring(posIntg, posIntg + 3);
        let final = aux.substring(posIntg + 3, aux.length - 3);
-       let final2;
+       let final2 =aux.substring(aux.length-3,aux.length);
        let caracteresEspeciales = "$%&*/";
        let caracteresAdicionales = "áéíóúüñ";
        let contadorLetra = 0;
        let contadorNumero = 0;
+       let contadorLetra2 = 0;
 
        while (valido && cont < inicio.length) {
-         if (inicio.charAt(cont) < "a" && inicio.charAt(cont) > "z") {
+         if (inicio.charAt(cont) < "a" || inicio.charAt(cont) > "z") {
            valido = false;
          }
-         contadorLetra++;
-         cont++;
+         else{
+            contadorLetra++;
+            cont++;
+         }
        }
 
-       if (contadorLetra < 3 && contadorLetra > 6) {
-         valido = true;
-         cont = 0;
+       if (contadorLetra > 3 || contadorLetra < 6) {
+         valido = false;
        }
-
+       cont = 0;
        while (valido && cont < inicio.length) {
-         if (inicio.charAt(cont) < "0" && inicio.charAt(cont) > "9") {
+         if (inicio.charAt(cont) < "0" || inicio.charAt(cont) > "9") {
            valido = false;
          }
-         contadorNumero++;
-         cont++;
+         else{
+            contadorNumero++;
+            cont++;
+         }
        }
 
-       if (contadorNumero < 4 && contadorNumero > 8) {
-         valido = true;
-         cont = 0;
+       if (contadorNumero > 4 || contadorNumero < 8) {
+         valido = false;
        }
+       cont = 0;
 
        while (valido && cont < medio.length) {
          if (!caracteresEspeciales.includes(medio.charAt(cont))) {
@@ -186,69 +190,18 @@ function Codigoexpor(aux) {
        }
 
        while (valido && cont < final.length) {
-         if (final.charAt(cont) < "a" && final.charAt(cont) > "z") {
-           if (final.charAt(cont) < "0" && final.charAt(cont) > "9") {
+         if (final.charAt(cont) < "a" || final.charAt(cont) > "z") {
+           if (final.charAt(cont) < "0" || final.charAt(cont) > "9") {
              valido = false;
            }
+           else{
+            contadorLetra2++;
+            cont++;
          }
-       }
-
-       while (valido && cont < final2.length) {
-         if (final2.charAt(cont) < "0" && final2.charAt(cont)) {
-           valido = false;
          }
-       }
-       return valido;
-     }
-
-     if (posGuion != null) {
-       let inicio = aux.substring(0, posGuion);
-       let medio = aux.substring(posGuion, posGuion + 3);
-       let final = aux.substring(posGuion + 3, aux.length - 3);
-       let final2;
-       let caracteresEspeciales = "$%&*/";
-       let caracteresAdicionales = "áéíóúüñ";
-       let contadorLetra = 0;
-       let contadorNumero = 0;
-
-       while (valido && cont < inicio.length) {
-         if (inicio.charAt(cont) < "a" && inicio.charAt(cont) > "z") {
-           valido = false;
-         }
-         contadorLetra++;
-         cont++;
-       }
-
-       if (contadorLetra < 3 && contadorLetra > 6) {
-         valido = true;
-         cont = 0;
-       }
-
-       while (valido && cont < inicio.length) {
-         if (inicio.charAt(cont) < "0" && inicio.charAt(cont) > "9") {
-           valido = false;
-         }
-         contadorNumero++;
-         cont++;
-       }
-
-       if (contadorNumero < 4 && contadorNumero > 8) {
-         valido = true;
-         cont = 0;
-       }
-
-       while (valido && cont < medio.length) {
-         if (!caracteresEspeciales.includes(medio.charAt(cont))) {
-           valido = false;
-         }
-       }
-
-       while (valido && cont < final.length) {
-         if (final.charAt(cont) < "a" && final.charAt(cont) > "z") {
-           if (final.charAt(cont) < "0" && final.charAt(cont) > "9") {
-             valido = false;
-           }
-         }
+       }   
+       if (contadorNumero > 2 || contadorNumero < 8) {
+         valido = false;
        }
 
        while (valido && cont < final2.length) {
@@ -274,8 +227,8 @@ function Nombre(aux) {
     let caracteresEspeciales=("-. "); 
     if (aux.length > 0) {
         while(valido && cont<inicio.length){
-            if (inicio.charAt(cont) < "a" && inicio.charAt(cont) > "z") {
-            if (inicio.charAt(cont) < "0" && inicio.charAt(cont) > "9") {
+            if (inicio.charAt(cont) < "a" || inicio.charAt(cont) > "z") {
+            if (inicio.charAt(cont) < "0" || inicio.charAt(cont) > "9") {
                 valido = false;
             }
             }
@@ -283,29 +236,28 @@ function Nombre(aux) {
         }
 
         cont=0;
-        if (medio.length < 7 && medio.length > 13) {
-        while (valido && cont < medio.length) {
-            if (medio.charAt(cont) < "a" && medio.charAt(cont) > "z") {
-            if (inicio.charAt(cont) < "0" && inicio.charAt(cont) > "9") {
-                valido = false;
-            }
+        if (medio.length > 7 || medio.length < 13) {
+          while (valido && cont < medio.length) {
+            if (medio.charAt(cont) < "a" || medio.charAt(cont) > "z") {
+              if (inicio.charAt(cont) < "0" || inicio.charAt(cont) > "9") {
+                if (!caracteresEspeciales.includes(final.charAt(cont))) {
+                  valido = false;
+                }
+              }
             }
             cont++;
-        }
+          }
         }
         else{
             valido=false;
         }
 
-        cont=0;
-        while (valido && cont < final.length) {
-        if (final.charAt(cont) < "a" && final.charAt(cont) > "z") {
-            if (!caracteresEspeciales.includes(final.charAt(cont))) {
+        if (final.charAt(cont) < "a" || final.charAt(cont) > "z") {
+            if (!caracterEspecial.includes(final.charAt(cont))) {
             valido = false;
             }
         }
-        cont++;
-        }
+
         return valido;
     }
     else{
@@ -317,7 +269,7 @@ function Unidades(aux) {
     let valido=true;
     let cont=0;
     while (valido && cont < aux.length) {
-        if (aux.charAt(cont) < "0" && aux.charAt(cont) > "9") {
+        if (aux.charAt(cont) < "0" || aux.charAt(cont) > "9") {
             valido=false;
         }
         cont++;
